@@ -1,0 +1,278 @@
+name,min_height,max_height,min_weight,max_weight,min_expectancy,max_expectancy,grooming_frequency_value,shedding_value,energy_level_value,trainability_value,demeanor_value,trait,group
+Affenpinscher,22.86,29.21,3.17514659,4.535923700000001,12,15,0.6,0.6,0.6,0.8,1,Confident,Toy Group
+Afghan Hound,63.5,68.58,22.6796185,27.2155422,12,15,0.8,0.2,0.8,0.2,0.2,Confident,Hound Group
+Airedale Terrier,58.42,58.42,22.6796185,31.751465900000003,11,14,0.6,0.4,0.6,1,0.8,Friendly,Terrier Group
+Akita,60.96,71.12,31.751465900000003,58.9670081,10,13,0.8,0.6,0.8,1,0.6,Courageous,Working Group
+Alaskan Malamute,58.42,63.5,34.01942775,38.55535145,10,14,0.6,0.6,0.8,0.4,0.8,Sweet,Working Group
+American Bulldog,50.8,63.5,27.2155422,45.359237,10,12,0.2,0.6,0.8,0.6,0.6,Loyal,Foundation Stock Service
+American English Coonhound,58.42,66.04,20.41165665,29.48350405,11,12,0.2,0.4,0.8,0.6,0.6,Sweet,Hound Group
+American Eskimo Dog,22.86,48.26,2.7215542200000002,15.875732950000002,13,15,0.4,0.6,0.8,1,1,Playful,Non-Sporting Group
+American Foxhound,53.34,63.5,27.2155422,31.751465900000003,11,13,0.2,0.6,0.8,0.4,0.8,Independent,Hound Group
+American Hairless Terrier,30.48,40.64,5.4431084400000005,7.25747792,14,16,0.2,0.2,0.6,1,0.6,Energetic,Terrier Group
+American Leopard Hound,53.34,68.58,20.41165665,31.751465900000003,12,15,0.4,0.6,0.8,1,0.6,Friendly,Foundation Stock Service
+American Staffordshire Terrier,43.18,48.26,18.143694800000002,31.751465900000003,12,16,0.2,0.4,0.6,0.6,0.6,Confident,Terrier Group
+American Water Spaniel,38.1,45.72,11.33980925,20.41165665,10,14,0.6,0.2,0.6,1,0.8,Independent,Sporting Group
+Anatolian Shepherd Dog,68.58,73.66,36.287389600000004,68.0388555,11,13,0.4,0.6,0.6,0.4,0.4,Loyal,Working Group
+Appenzeller Sennenhund,48.26,55.88,21.772433760000002,31.751465900000003,12,15,0.4,0.8,1,0.2,0.4,Energetic,Foundation Stock Service
+Australian Cattle Dog,43.18,50.8,15.875732950000002,22.6796185,12,16,0.2,0.8,1,0.2,0.4,Alert,Herding Group
+Australian Kelpie,43.18,50.8,13,19,10,13,0.4,0.8,0.8,1,0.6,Loyal,Foundation Stock Service
+Australian Shepherd,45.72,58.42,18.143694800000002,29.48350405,12,15,0.4,0.6,0.8,1,0.6,Smart,Herding Group
+Australian Stumpy Tail Cattle Dog,43.18,50.8,14.51495584,20.41165665,12,15,0.4,0.4,0.8,0.8,0.6,Alert,Foundation Stock Service
+Australian Terrier,25.4,27.94,6.80388555,9.071847400000001,11,15,0.4,0.2,0.8,0.6,0.8,Sweet,Terrier Group
+Azawakh,59.69,73.66,14.968548210000002,24.947580350000003,12,15,0.4,0.4,0.6,0.4,0.8,Loyal,Hound Group
+Barbet,48.26,62.230000000000004,15.875732950000002,29.48350405,12,14,0.4,0.2,0.6,0.6,0.8,Friendly,Sporting Group
+Basenji,40.64,43.18,9.979032140000001,10.886216880000001,13,14,0.2,0.4,0.8,0.4,0.4,Independent,Hound Group
+Basset Fauve de Bretagne,31.75,39.37,12.24699399,15.875732950000002,12,12,0.4,0.6,0.6,0.2,1,Smart,Foundation Stock Service
+Basset Hound,38.1,38.1,18.143694800000002,29.48350405,12,13,0.6,0.4,0.2,0.4,0.8,Sweet,Hound Group
+Bavarian Mountain Scent Hound,43.18,52.07,16.78291769,29.937096420000003,12,15,0.4,0.8,0.6,0.6,0.4,Loyal,Foundation Stock Service
+Beagle,33.02,38.1,5.8967008100000005,13.6077711,10,15,0.6,0.6,0.8,0.6,0.8,Friendly,Hound Group
+Bearded Collie,50.8,55.88,20.41165665,24.947580350000003,12,14,0.8,0.6,0.6,0.4,1,Smart,Herding Group
+Beauceron,60.96,69.85,31.751465900000003,49.895160700000005,10,12,0.6,1,1,0.8,0.4,Gentle,Herding Group
+Bedlington Terrier,38.1,44.45,7.71107029,10.43262451,11,16,0.6,0.6,0.8,0.6,0.6,Loyal,Terrier Group
+Belgian Laekenois,55.88,66.04,24.947580350000003,29.48350405,10,12,0.4,0.8,0.8,0.8,0.4,Sweet,Miscellaneous Class
+Belgian Malinois,55.88,66.04,18.143694800000002,36.287389600000004,14,16,0.4,0.6,0.8,0.8,0.4,Confident,Herding Group
+Belgian Sheepdog,55.88,66.04,20.41165665,34.01942775,12,14,0.6,0.6,0.8,0.8,0.4,Smart,Herding Group
+Belgian Tervuren,55.88,66.04,20.41165665,34.01942775,12,14,0.6,0.6,0.8,0.8,0.4,Courageous,Herding Group
+Bergamasco Sheepdog,55.88,59.69,25.85476509,38.10175908,13,15,0.2,0.2,0.4,0.6,0.4,Independent,Herding Group
+Berger Picard,54.61,64.77,22.6796185,31.751465900000003,12,13,0.2,0.6,1,0.8,0.6,Loyal,Herding Group
+Bernese Mountain Dog,58.42,69.85,31.751465900000003,52.163122550000004,7,10,0.6,1,0.8,0.8,0.4,Gentle,Working Group
+Bichon Frise,24.13,29.21,5.4431084400000005,8.164662660000001,14,15,1,0.2,0.6,0.6,1,Playful,Non-Sporting Group
+Biewer Terrier,17.78,27.94,1.81436948,3.62873896,16,16,0.6,0.2,0.4,1,1,Smart,Miscellaneous Class
+Black and Tan Coonhound,58.42,68.58,29.48350405,49.895160700000005,10,12,0.4,0.6,0.6,0.4,0.8,Friendly,Hound Group
+Black Russian Terrier,66.04,76.2,36.287389600000004,58.9670081,10,12,0.8,0.6,0.8,0.8,0.4,Smart,Working Group
+Bloodhound,58.42,68.58,36.287389600000004,49.895160700000005,10,12,0.4,0.6,0.6,0.4,0.6,Friendly,Hound Group
+Bluetick Coonhound,53.34,68.58,20.41165665,36.287389600000004,11,12,0.4,0.6,0.8,0.6,0.8,Smart,Hound Group
+Boerboel,55.88,68.58,68.0388555,90.718474,9,11,0.2,0.4,0.4,0.6,0.4,Confident,Working Group
+Bohemian Shepherd,49.022000000000006,55.118,16.78291769,27.2155422,12,15,0.2,0.4,0.6,0.8,0.6,Friendly,Foundation Stock Service
+Bolognese,25.4,30.48,2.4947580350000003,4.082331330000001,12,14,0.6,0.2,0.4,0.6,0.8,Playful,Foundation Stock Service
+Border Collie,45.72,55.88,13.6077711,24.947580350000003,12,15,0.6,0.6,1,1,0.4,Sweet,Herding Group
+Border Terrier,30.48,38.1,5.216312255,7.030681735,12,15,0.4,0.4,0.6,0.8,0.8,Sweet,Terrier Group
+Borzoi,66.04,71.12,27.2155422,47.62719885,9,14,0.4,0.6,0.8,0.4,0.6,Sweet,Hound Group
+Boston Terrier,38.1,43.18,5.4431084400000005,11.33980925,11,13,0.4,0.2,0.6,1,1,Friendly,Non-Sporting Group
+Bouvier des Flandres,59.69,69.85,31.751465900000003,49.895160700000005,10,12,0.8,0.6,0.8,0.6,0.6,Sweet,Herding Group
+Boxer,54.61,63.5,6.80388555,36.287389600000004,10,12,0.4,0.4,0.8,0.8,1,Smart,Working Group
+Boykin Spaniel,35.56,45.72,11.33980925,18.143694800000002,10,15,0.6,0.6,0.6,1,0.6,Friendly,Sporting Group
+Bracco Italiano,53.34,68.58,24.947580350000003,40.8233133,10,14,0.2,0.4,0.8,0.8,0.6,Sweet,Miscellaneous Class
+Braque du Bourbonnais,48.26,57.15,15.875732950000002,24.04039561,10,12,0.2,0.2,0.6,1,0.6,Sweet,Foundation Stock Service
+Braque Francais Pyrenean,46.99,58.42,18.143694800000002,24.947580350000003,12,14,0.2,0.6,1,0.6,0.6,Friendly,Foundation Stock Service
+Briard,55.88,68.58,24.947580350000003,45.359237,12,12,0.8,0.2,0.6,0.4,0.4,Confident,Herding Group
+Brittany,44.45,52.07,13.6077711,18.143694800000002,12,14,0.6,0.6,1,1,0.8,Smart,Sporting Group
+Broholmer,69.85,74.93,40.8233133,68.0388555,8,10,0.2,0.6,0.4,0.6,0.4,Friendly,Foundation Stock Service
+Brussels Griffon,17.78,25.4,3.62873896,4.535923700000001,12,15,0.6,0.6,0.6,0.6,0.8,Loyal,Toy Group
+Bull Terrier,53.34,55.88,22.6796185,31.751465900000003,12,13,0.4,0.6,0.8,0.4,0.8,Playful,Terrier Group
+Bulldog,35.56,38.1,18.143694800000002,22.6796185,8,10,0.6,0.8,0.6,0.6,0.8,Friendly,Non-Sporting Group
+Bullmastiff,60.96,68.58,45.359237,58.9670081,7,9,0.2,0.6,0.8,0.6,0.6,Sweet,Working Group
+Cairn Terrier,24.13,25.4,5.8967008100000005,6.35029318,13,15,0.4,0.4,0.6,0.6,0.8,Alert,Terrier Group
+Canaan Dog,48.26,60.96,15.875732950000002,24.947580350000003,12,15,0.4,1,0.6,0.4,0.4,Confident,Herding Group
+Cane Corso,59.69,69.85,41,50,9,12,0.2,0.4,0.8,0.6,0.6,Sweet,Working Group
+Cardigan Welsh Corgi,26.67,31.75,11.33980925,17.23651006,12,15,0.4,0.6,0.8,0.6,0.6,Sweet,Herding Group
+Carolina Dog,45.085,49.53,13.6077711,24.947580350000003,12,15,0.2,0.6,0.6,1,0.6,Loyal,Foundation Stock Service
+Catahoula Leopard Dog,55.88,60.96,22.6796185,43.09127515,10,14,0.4,0.6,1,0.4,0.4,Loyal,Foundation Stock Service
+Caucasian Shepherd Dog,58.42,76.2,44.905644630000005,77.1107029,10,12,0.6,0.8,0.4,0.4,0.2,Courageous,Foundation Stock Service
+Cavalier King Charles Spaniel,30.48,33.02,5.8967008100000005,8.164662660000001,12,15,0.4,0.4,0.4,1,0.8,Sweet,Toy Group
+Central Asian Shepherd Dog,64.77,69.85,39.916128560000004,49.895160700000005,12,15,0.2,0.6,0.4,0.4,0.2,Independent,Foundation Stock Service
+Cesky Terrier,25.4,33.02,6.35029318,10.886216880000001,12,15,0.4,0.4,0.6,0.6,0.4,Smart,Terrier Group
+Chesapeake Bay Retriever,53.34,66.04,24.947580350000003,36.287389600000004,10,13,0.6,0.8,0.8,0.6,0.4,Sweet,Sporting Group
+Chihuahua,12.7,20.32,2.7215542200000002,2.7215542200000002,14,16,0.2,0.4,0.6,0.4,0.6,Sweet,Toy Group
+Chinese Crested,27.94,33.02,3.62873896,5.4431084400000005,13,18,0.2,0.2,0.6,0.6,0.8,Sweet,Toy Group
+Chinese Shar-Pei,45.72,50.8,20.41165665,27.2155422,8,12,0.2,0.8,0.6,0.2,0.4,Loyal,Non-Sporting Group
+Chinook,55.88,66.04,22.6796185,40.8233133,12,15,0.4,0.6,0.8,1,0.8,Smart,Working Group
+Chow Chow,43.18,50.8,20.41165665,31.751465900000003,8,12,0.6,0.6,0.6,0.2,0.4,Confident,Non-Sporting Group
+Cirneco dell’Etna,41.910000000000004,49.53,7.71107029,11.793401620000001,12,14,0.2,0.2,0.6,0.6,0.6,Sweet,Hound Group
+Clumber Spaniel,43.18,50.8,24.947580350000003,38.55535145,10,12,0.4,0.8,0.6,0.6,0.4,Mellow,Sporting Group
+Cocker Spaniel,34.29,39.37,9.071847400000001,13.6077711,10,14,0.8,0.4,0.6,1,1,Gentle,Sporting Group
+Collie,55.88,66.04,22.6796185,34.01942775,12,14,0.6,0.6,0.6,0.8,0.8,Loyal,Herding Group
+Coton de Tulear,22.86,27.94,3.62873896,6.80388555,15,19,0.8,0.4,0.6,0.8,1,Sweet,Non-Sporting Group
+Croatian Sheepdog,40.64,50.8,13.15417873,19.958064280000002,13,14,0.2,0.4,1,1,0.4,Loyal,Foundation Stock Service
+Curly-Coated Retriever,58.42,68.58,27.2155422,43.09127515,10,12,0.2,0.4,0.8,0.4,0.4,Confident,Sporting Group
+Czechoslovakian Vlcak,59.69,64.77,19.958064280000002,25.85476509,10,15,0.4,1,1,0.2,0.2,Loyal,Foundation Stock Service
+Dachshund,12.7,22.86,4.9895160700000005,14.51495584,12,16,0.4,0.4,0.6,0.6,0.6,Friendly,Hound Group
+Dalmatian,48.26,60.96,20.41165665,31.751465900000003,11,13,0.4,1,0.8,0.6,0.6,Confident,Non-Sporting Group
+Dandie Dinmont Terrier,20.32,27.94,8.164662660000001,10.886216880000001,12,15,0.8,0.2,0.6,0.4,0.4,Independent,Terrier Group
+Danish-Swedish Farmdog,31.75,36.83,6.80388555,9.071847400000001,11,13,0.2,0.4,0.8,0.8,0.4,Energetic,Foundation Stock Service
+Deutscher Wachtelhund,45.72,53.34,18.143694800000002,24.947580350000003,12,14,0.4,0.4,0.6,0.8,0.6,Friendly,Foundation Stock Service
+Doberman Pinscher,60.96,71.12,27.2155422,45.359237,10,12,0.2,0.8,1,1,0.6,Loyal,Working Group
+Dogo Argentino,60.96,67.31,39.916128560000004,45.359237,9,15,0.2,0.2,1,1,0.4,Friendly,Working Group
+Dogue de Bordeaux,58.42,66.04,44.905644630000005,49.895160700000005,5,8,0.2,0.8,0.6,0.6,0.6,Sweet,Working Group
+Drentsche Patrijshond,53.34,63.5,21.772433760000002,33.11224301,11,14,0.4,0.8,0.8,0.6,0.4,Loyal,Foundation Stock Service
+Drever,30.48,38.1,15.875732950000002,18.143694800000002,15,15,0.2,0.4,0.6,0.2,0.6,Loyal,Foundation Stock Service
+Dutch Shepherd,54.61,62.230000000000004,19.05087954,34.01942775,11,14,0.4,0.6,1,0.6,0.6,Smart,Miscellaneous Class
+English Cocker Spaniel,38.1,43.18,11.793401620000001,15.42214058,12,14,0.6,0.4,0.6,1,0.8,Energetic,Sporting Group
+English Foxhound,60.96,60.96,27.2155422,34.01942775,10,13,0.2,0.8,0.8,0.6,0.8,Sweet,Hound Group
+English Setter,58.42,68.58,20.41165665,36.287389600000004,12,12,0.6,0.8,0.8,0.8,0.8,Friendly,Sporting Group
+English Springer Spaniel,48.26,50.8,18.143694800000002,22.6796185,12,14,0.4,0.4,0.6,1,0.8,Friendly,Sporting Group
+English Toy Spaniel,22.86,25.4,3.62873896,6.35029318,10,12,0.6,0.6,0.6,0.4,0.6,Gentle,Toy Group
+Entlebucher Mountain Dog,40.64,53.34,18.143694800000002,29.48350405,11,13,0.2,0.2,1,0.4,0.4,Loyal,Herding Group
+Estrela Mountain Dog,62.230000000000004,73.66,34.926612490000004,59.874192840000006,10,14,0.4,0.6,0.4,0.8,0.2,Alert,Foundation Stock Service
+Eurasier,48.26,60.96,18.143694800000002,31.751465900000003,12,16,0.6,0.6,0.6,0.6,0.4,Confident,Foundation Stock Service
+Field Spaniel,43.18,45.72,15.875732950000002,22.6796185,12,13,0.4,0.8,0.6,0.6,0.4,Sweet,Sporting Group
+Finnish Lapphund,40.64,53.34,14.968548210000002,24.04039561,12,15,0.4,0.6,0.6,1,0.4,Friendly,Herding Group
+Finnish Spitz,39.37,50.8,9.071847400000001,14.968548210000002,13,15,0.4,0.6,1,0.6,0.8,Friendly,Non-Sporting Group
+Flat-Coated Retriever,55.88,62.230000000000004,27.2155422,31.751465900000003,8,10,0.4,0.8,1,1,0.8,Friendly,Sporting Group
+French Bulldog,27.94,33.02,12.70058636,12.70058636,10,12,0.2,0.8,0.4,0.6,0.6,Adaptable,Non-Sporting Group
+French Spaniel,54.61,60.96,22.6796185,27.2155422,10,12,0.2,0.6,0.8,1,0.6,Gentle,Foundation Stock Service
+German Longhaired Pointer,55.88,71.12,24.947580350000003,36.287389600000004,12,14,0.2,0.6,0.8,1,0.8,Adaptable,Foundation Stock Service
+German Pinscher,43.18,50.8,11.33980925,20.41165665,12,14,0.2,0.4,1,0.6,0.6,Courageous,Working Group
+German Shepherd Dog,55.88,66.04,22.6796185,40.8233133,7,10,0.4,0.8,0.6,1,0.6,Confident,Herding Group
+German Shorthaired Pointer,53.34,63.5,20.41165665,31.751465900000003,10,12,0.4,0.8,1,1,0.8,Friendly,Sporting Group
+German Spitz,30.48,38.1,10.886216880000001,11.793401620000001,13,15,0.6,0.6,0.6,1,0.4,Loyal,Foundation Stock Service
+German Wirehaired Pointer,55.88,66.04,22.6796185,31.751465900000003,14,16,0.4,0.8,1,1,0.4,Sweet,Sporting Group
+Giant Schnauzer,59.69,69.85,24.947580350000003,38.55535145,12,15,0.8,0.6,1,0.8,0.6,Loyal,Working Group
+Glen of Imaal Terrier,31.75,35.56,14.51495584,18.143694800000002,10,15,0.6,0.4,0.6,0.4,0.6,Gentle,Terrier Group
+Golden Retriever,54.61,60.96,24.947580350000003,34.01942775,10,12,0.4,0.6,1,1,0.8,Friendly,Sporting Group
+Gordon Setter,58.42,68.58,20.41165665,36.287389600000004,12,13,0.4,0.6,1,0.4,0.4,Sweet,Sporting Group
+Grand Basset Griffon Vendéen,39.37,45.72,18.143694800000002,20.41165665,13,15,0.4,0.6,1,0.4,0.8,Independent,Hound Group
+Great Dane,71.12,81.28,49.895160700000005,79.37866475,7,10,0.2,0.6,0.8,0.6,0.6,Friendly,Working Group
+Great Pyrenees,63.5,81.28,38.55535145,45.359237,10,12,0.4,0.6,1,0.4,0.4,Smart,Working Group
+Greater Swiss Mountain Dog,59.69,72.39,38.55535145,63.502931800000006,8,11,0.4,0.6,0.8,0.6,0.6,Loyal,Working Group
+Greyhound,68.58,76.2,27.2155422,31.751465900000003,10,13,0.2,0.4,0.8,0.4,0.8,Gentle,Hound Group
+Hamiltonstovare,48.26,60.96,18.143694800000002,34.01942775,14,17,0.2,0.2,0.8,0.6,0.8,Energetic,Foundation Stock Service
+Hanoverian Scenthound,48.26,53.34,35.83379723,44.905644630000005,10,14,0.2,0.2,0.6,0.4,0.4,Loyal,Foundation Stock Service
+Harrier,48.26,53.34,20.41165665,27.2155422,12,15,0.4,0.4,1,0.8,0.8,Friendly,Hound Group
+Havanese,21.59,29.21,3.17514659,5.8967008100000005,14,16,0.6,0.4,0.6,0.8,1,Smart,Toy Group
+Hokkaido,45.72,50.8,19.958064280000002,29.937096420000003,12,15,0.4,0.6,0.8,0.8,0.2,Confident,Foundation Stock Service
+Hovawart,58.42,71.12,29.48350405,40.8233133,10,14,0.2,0.6,0.6,0.2,0.4,Alert,Foundation Stock Service
+Ibizan Hound,57.15,69.85,20.41165665,22.6796185,11,14,0.2,0.4,1,0.4,0.4,Sweet,Hound Group
+Icelandic Sheepdog,41.910000000000004,45.72,11.33980925,13.6077711,12,14,0.4,0.6,0.8,1,0.8,Friendly,Herding Group
+Irish Red and White Setter,57.15,66.04,15.875732950000002,27.2155422,11,15,0.4,0.4,1,0.8,0.8,Courageous,Sporting Group
+Irish Setter,63.5,68.58,27.2155422,31.751465900000003,12,15,0.6,0.6,1,0.6,1,Energetic,Sporting Group
+Irish Terrier,45.72,45.72,11.33980925,12.24699399,13,15,0.2,0.4,0.6,0.6,0.6,Courageous,Terrier Group
+Irish Water Spaniel,53.34,60.96,20.41165665,30.84428116,12,13,0.4,0.6,1,0.8,0.4,Playful,Sporting Group
+Irish Wolfhound,76.2,81.28,47.62719885,54.4310844,6,8,0.4,0.6,0.6,0.4,0.6,Courageous,Hound Group
+Italian Greyhound,33.02,38.1,3.17514659,6.35029318,14,15,0.2,0.6,0.6,0.4,0.2,Playful,Toy Group
+Jagdterrier,33.02,40.64,7.71107029,9.979032140000001,10,12,0.2,0.4,0.6,0.6,0.4,Courageous,Foundation Stock Service
+Japanese Chin,20.32,27.94,3.17514659,4.9895160700000005,10,12,0.4,0.6,0.6,0.4,0.4,Sweet,Toy Group
+Japanese Spitz,30.48,38.1,4.535923700000001,11.33980925,12,14,0.4,0.4,0.6,0.8,0.8,Loyal,Foundation Stock Service
+Jindo,45.72,55.88,13.6077711,22.6796185,14,14,0.4,0.6,0.8,0.4,0.4,Alert,Foundation Stock Service
+Kai Ken,39.37,49.53,9.071847400000001,18.143694800000002,12,15,0.2,0.6,0.8,0.4,0.4,Loyal,Foundation Stock Service
+Karelian Bear Dog,48.26,59.69,19.958064280000002,22.22602613,11,13,0.2,0.6,0.4,0.8,0.2,Loyal,Foundation Stock Service
+Keeshond,43.18,45.72,15.875732950000002,20.41165665,12,15,0.6,0.6,0.6,0.8,0.8,Friendly,Non-Sporting Group
+Kerry Blue Terrier,44.45,49.53,14.968548210000002,18.143694800000002,12,15,0.6,0.2,0.6,0.2,0.6,Smart,Terrier Group
+Kishu Ken,43.18,55.88,13.6077711,27.2155422,11,13,0.2,0.6,0.8,0.4,0.4,Loyal,Foundation Stock Service
+Komondor,64.77,69.85,36.287389600000004,45.359237,10,12,1,0.6,0.6,0.4,0.4,Loyal,Working Group
+Kromfohrlander,38.1,45.72,9.071847400000001,15.875732950000002,13,15,0.6,0.8,0.6,0.6,0.4,Smart,Foundation Stock Service
+Kuvasz,66.04,76.2,31.751465900000003,52.163122550000004,10,12,0.4,0.8,0.6,0.4,0.4,Loyal,Working Group
+Labrador Retriever,54.61,62.230000000000004,24.947580350000003,36.287389600000004,10,12,0.4,0.8,1,1,1,Friendly,Sporting Group
+Lagotto Romagnolo,40.64,48.26,10.886216880000001,15.875732950000002,15,17,0.2,0.2,0.6,1,0.6,Sweet,Sporting Group
+Lakeland Terrier,35.56,38.1,7.71107029,7.71107029,12,15,0.4,0.2,0.6,0.6,0.6,Friendly,Terrier Group
+Lancashire Heeler,25.4,30.48,4.082331330000001,7.71107029,12,15,0.2,0.6,0.8,0.8,0.8,Sweet,Miscellaneous Class
+Lapponian Herder,45.72,50.8,31.751465900000003,31.751465900000003,10,14,0.4,0.6,0.6,1,0.4,Friendly,Foundation Stock Service
+Leonberger,64.77,80.01,40.8233133,77.1107029,9,9,0.8,0.8,0.6,1,0.8,Friendly,Working Group
+Lhasa Apso,25.4,27.94,5.4431084400000005,8.164662660000001,12,15,0.6,0.2,0.6,0.4,0.4,Confident,Non-Sporting Group
+Löwchen,27.94,33.02,4.535923700000001,6.80388555,15,15,0.2,0.2,0.6,0.6,1,Sweet,Non-Sporting Group
+Maltese,17.78,22.86,3.17514659,3.17514659,12,15,0.8,0.2,0.6,0.6,1,Gentle,Toy Group
+Manchester Terrier (Standard),38.1,40.64,5.4431084400000005,9.979032140000001,15,17,0.4,0.4,0.6,0.8,0.6,Energetic,Terrier Group
+Manchester Terrier (Toy),25.4,30.48,5.4431084400000005,5.4431084400000005,15,17,0.4,0.4,0.6,0.8,0.6,Energetic,Toy Group
+Mastiff,69.85,76.2,54.4310844,104.32624510000001,6,10,0.2,0.4,0.6,0.6,0.6,Courageous,Working Group
+Miniature American Shepherd,33.02,45.72,9.071847400000001,18.143694800000002,12,13,0.8,1,0.8,1,0.8,Gentle,Herding Group
+Miniature Bull Terrier,25.4,35.56,8.164662660000001,12.70058636,11,13,0.2,0.4,0.8,0.4,0.6,Friendly,Terrier Group
+Miniature Pinscher,25.4,31.75,3.62873896,4.535923700000001,12,16,0.2,0.2,0.6,0.4,0.6,Courageous,Toy Group
+Miniature Schnauzer,30.48,35.56,4.9895160700000005,9.071847400000001,12,15,1,0.2,0.6,1,0.6,Friendly,Terrier Group
+Mountain Cur,40.64,66.04,13.6077711,27.2155422,10,13,0.2,0.6,1,0.2,0.4,Smart,Foundation Stock Service
+Mudi,38.1,46.99,8.164662660000001,13.15417873,12,14,0.2,0.4,1,1,0.4,Loyal,Miscellaneous Class
+Neapolitan Mastiff,60.96,78.74,49.895160700000005,68.0388555,7,9,0.4,0.6,0.6,0.2,0.2,Loyal,Working Group
+Nederlandse Kooikerhondje,35.56,43.18,9.071847400000001,13.6077711,12,15,0.4,0.6,0.6,1,0.4,Friendly,Sporting Group
+Newfoundland,66.04,71.12,45.359237,68.0388555,9,10,0.4,0.6,0.6,0.8,0.8,Sweet,Working Group
+Norfolk Terrier,22.86,25.4,4.9895160700000005,5.4431084400000005,12,16,0.4,0.6,0.6,0.6,0.8,Courageous,Terrier Group
+Norrbottenspets,41.910000000000004,45.72,9.071847400000001,13.6077711,14,17,0.4,0.4,0.8,0.8,0.6,Courageous,Miscellaneous Class
+Norwegian Buhund,40.64,46.99,11.793401620000001,18.143694800000002,12,15,0.4,0.6,0.8,0.8,0.8,Confident,Herding Group
+Norwegian Elkhound,49.53,52.07,21.772433760000002,24.947580350000003,12,15,0.4,0.6,0.6,0.6,0.8,Friendly,Hound Group
+Norwegian Lundehund,30.48,38.1,9.071847400000001,13.6077711,12,15,0.4,0.6,0.8,0.6,0.4,Loyal,Non-Sporting Group
+Norwich Terrier,25.4,25.4,5.4431084400000005,5.4431084400000005,12,15,0.4,0.6,0.8,0.6,0.8,Sweet,Terrier Group
+Nova Scotia Duck Tolling Retriever,43.18,53.34,15.875732950000002,22.6796185,12,14,0.4,0.6,1,0.8,0.8,Sweet,Sporting Group
+Old English Sheepdog,53.34,55.88,27.2155422,45.359237,10,12,0.6,0.6,0.6,0.4,0.6,Adaptable,Herding Group
+Otterhound,60.96,68.58,36.287389600000004,52.163122550000004,10,13,0.4,0.6,0.6,0.2,0.6,Gentle,Hound Group
+Papillon,20.32,27.94,2.2679618500000003,4.535923700000001,14,16,0.4,0.6,0.6,1,1,Friendly,Toy Group
+Parson Russell Terrier,33.02,35.56,5.8967008100000005,7.71107029,13,15,0.4,0.4,1,0.6,0.8,Friendly,Terrier Group
+Pekingese,15.24,22.86,6.35029318,6.35029318,12,14,0.6,0.6,0.4,0.2,0.4,Sweet,Toy Group
+Pembroke Welsh Corgi,25.4,30.48,12.70058636,13.6077711,12,13,0.4,0.8,0.8,0.6,1,Sweet,Herding Group
+Perro de Presa Canario,55.88,66.04,38.10175908,49.895160700000005,9,11,0.2,0.6,0.4,0.6,0.2,Confident,Foundation Stock Service
+Peruvian Inca Orchid,24.765,65.405,3.855535145,24.947580350000003,12,14,0.2,0.8,0.8,0.6,0.4,Sweet,Miscellaneous Class
+Petit Basset Griffon Vendéen,33.02,38.1,11.33980925,18.143694800000002,12,14,0.4,0.4,0.8,0.4,0.8,Alert,Hound Group
+Pharaoh Hound,53.34,63.5,20.41165665,24.947580350000003,12,14,0.4,0.6,0.8,0.4,0.4,Friendly,Hound Group
+Plott Hound,50.8,63.5,18.143694800000002,27.2155422,12,14,0.2,0.4,0.8,0.4,0.6,Loyal,Hound Group
+Pointer,58.42,71.12,20.41165665,34.01942775,12,17,0.4,0.4,0.8,0.6,0.6,Loyal,Sporting Group
+Polish Lowland Sheepdog,43.18,50.8,13.6077711,22.6796185,12,14,0.8,0.6,0.8,0.2,0.2,Confident,Herding Group
+Pomeranian,15.24,17.78,1.3607771100000001,3.17514659,12,16,0.6,0.6,0.6,0.6,0.6,Smart,Toy Group
+Poodle (Miniature),25.4,38.1,4.535923700000001,6.80388555,10,18,0.6,0.2,0.8,1,0.6,Energetic,Non-Sporting Group
+Poodle (Standard),38.1,38.1,18.143694800000002,31.751465900000003,10,18,1,0.2,0.6,1,0.8,Energetic,Non-Sporting Group
+Poodle (Toy),25.4,25.4,1.81436948,2.7215542200000002,10,18,1,0.2,0.6,1,0.8,Energetic,Toy Group
+Porcelaine,55.88,58.42,24.947580350000003,28.12272694,12,13,0.2,0.6,0.8,0.2,0.6,Independent,Foundation Stock Service
+Portuguese Podengo,40.64,71.12,15.875732950000002,29.937096420000003,10,12,0.4,0.8,0.8,0.6,0.4,Independent,Miscellaneous Class
+Portuguese Podengo Pequeno,20.32,30.48,4.082331330000001,5.8967008100000005,12,15,0.4,0.6,0.8,0.6,0.8,Playful,Hound Group
+Portuguese Pointer,52.07,55.88,15.875732950000002,26.761949830000002,14,14,0.2,0.4,0.8,1,0.8,Sweet,Foundation Stock Service
+Portuguese Sheepdog,41.910000000000004,54.61,17.009713875,26.761949830000002,12,13,0.4,0.4,0.8,1,0.2,Smart,Foundation Stock Service
+Portuguese Water Dog,43.18,58.42,15.875732950000002,27.2155422,11,13,0.8,0.6,0.8,0.8,0.6,Sweet,Working Group
+Pudelpointer,55.88,66.04,20.41165665,31.751465900000003,14,14,0.2,0.6,0.6,1,0.6,Friendly,Foundation Stock Service
+Pug,25.4,33.02,6.35029318,8.164662660000001,13,15,0.4,0.8,0.6,0.6,0.8,Sweet,Toy Group
+Puli,40.64,43.18,11.33980925,15.875732950000002,10,15,1,0.2,0.6,0.4,0.4,Loyal,Herding Group
+Pumi,38.1,46.99,9.979032140000001,13.15417873,12,13,0.2,0.2,0.8,0.8,0.6,Energetic,Herding Group
+Pyrenean Mastiff,63.5,78.74,54.4310844,108.8621688,10,13,0.6,0.6,0.4,0.6,0.2,Gentle,Foundation Stock Service
+Pyrenean Shepherd,38.1,53.34,6.80388555,13.6077711,17,19,0.4,0.6,0.8,0.6,0.4,Sweet,Herding Group
+Rafeiro do Alentejo,63.5,73.66,34.926612490000004,59.874192840000006,12,14,0.4,0.6,0.4,1,0.2,Confident,Foundation Stock Service
+Rat Terrier,25.4,45.72,4.535923700000001,11.33980925,12,18,0.4,0.6,0.6,0.8,0.8,Friendly,Terrier Group
+Redbone Coonhound,53.34,68.58,20.41165665,31.751465900000003,12,15,0.4,0.6,0.6,0.8,0.8,Gentle,Hound Group
+Rhodesian Ridgeback,60.96,68.58,31.751465900000003,38.55535145,10,10,0.4,0.6,0.6,0.4,0.6,Sweet,Hound Group
+Romanian Mioritic Shepherd Dog,57.15,73.66,45.359237,58.9670081,12,14,0.4,0.4,0.6,0.4,0.2,Loyal,Foundation Stock Service
+Rottweiler,55.88,68.58,36.287389600000004,61.23496995,9,10,0.4,0.6,0.6,0.6,0.4,Loyal,Working Group
+Russell Terrier,25.4,30.48,4.082331330000001,6.80388555,12,14,0.4,0.4,1,0.6,0.8,Alert,Terrier Group
+Russian Toy,20.32,27.94,2.9483504050000002,2.9483504050000002,12,14,0.4,0.2,0.6,0.6,0.8,Loyal,Miscellaneous Class
+Russian Tsvetnaya Bolonka,22.86,25.4,2.0411656650000003,4.9895160700000005,12,16,0.6,0.2,0.6,0.6,0.8,Playful,Foundation Stock Service
+Saint Bernard,66.04,76.2,54.4310844,81.6466266,8,10,0.4,0.6,0.6,0.6,0.8,Playful,Working Group
+Saluki,58.42,71.12,18.143694800000002,29.48350405,10,17,0.2,0.4,0.8,0.4,0.4,Gentle,Hound Group
+Samoyed,48.26,59.69,15.875732950000002,29.48350405,12,14,0.6,0.6,0.8,0.4,0.8,Adaptable,Working Group
+Schapendoes,40.64,50.8,11.793401620000001,24.947580350000003,12,15,0.4,0.6,0.6,0.8,0.6,Friendly,Foundation Stock Service
+Schipperke,25.4,33.02,4.535923700000001,7.25747792,12,14,0.4,0.6,0.8,0.4,0.6,Confident,Non-Sporting Group
+Scottish Deerhound,71.12,81.28,34.01942775,49.895160700000005,8,11,0.2,0.6,0.6,0.4,0.6,Gentle,Hound Group
+Scottish Terrier,25.4,25.4,8.164662660000001,9.979032140000001,12,12,0.6,0.4,0.6,0.4,0.6,Confident,Terrier Group
+Sealyham Terrier,26.67,26.67,10.43262451,10.886216880000001,12,14,0.6,0.6,0.6,0.4,0.6,Alert,Terrier Group
+Segugio Italiano,48.26,58.42,18.143694800000002,27.2155422,11,13,0.4,0.6,0.6,1,0.2,Friendly,Foundation Stock Service
+Shetland Sheepdog,33.02,40.64,6.80388555,11.33980925,12,14,0.6,0.6,0.6,1,0.4,Playful,Herding Group
+Shiba Inu,34.29,41.910000000000004,7.71107029,10.43262451,13,16,0.4,0.6,0.6,0.4,0.4,Alert,Non-Sporting Group
+Shih Tzu,22.86,26.67,4.082331330000001,7.25747792,10,18,0.8,0.2,0.6,0.6,0.8,Sweet,Toy Group
+Shikoku,43.18,55.88,15.875732950000002,24.947580350000003,10,12,0.4,0.6,0.6,0.6,0.6,Energetic,Foundation Stock Service
+Siberian Husky,50.8,59.69,15.875732950000002,27.2155422,12,14,0.4,0.6,0.8,0.4,0.8,Loyal,Working Group
+Silky Terrier,22.86,25.4,4.535923700000001,4.535923700000001,13,15,0.6,0.4,0.6,0.6,0.6,Friendly,Toy Group
+Skye Terrier,24.13,25.4,15.875732950000002,20.41165665,12,14,0.8,0.6,0.6,0.4,0.4,Courageous,Terrier Group
+Sloughi,60.96,73.66,15.875732950000002,22.6796185,10,15,0.4,0.2,0.6,0.4,0.4,Independent,Hound Group
+Slovakian Wirehaired Pointer,57.15,67.31,22.6796185,29.48350405,12,15,0.2,0.4,0.8,0.4,1,Smart,Foundation Stock Service
+Slovensky Cuvac,58.42,69.85,30.84428116,43.99845989,11,13,0.4,0.8,0.4,0.6,0.2,Courageous,Foundation Stock Service
+Slovensky Kopov,40.64,50.8,14.968548210000002,19.958064280000002,12,13,0.2,0.6,0.6,0.8,0.6,Courageous,Foundation Stock Service
+Small Munsterlander Pointer,52.07,53.34,18.143694800000002,27.2155422,12,14,0.2,0.6,1,0.6,0.8,Smart,Foundation Stock Service
+Smooth Fox Terrier,38.1,38.1,6.80388555,8.164662660000001,12,15,0.4,0.4,0.8,0.6,0.8,Friendly,Terrier Group
+Soft Coated Wheaten Terrier,43.18,48.26,13.6077711,18.143694800000002,12,14,0.6,0.2,0.8,0.4,0.6,Friendly,Terrier Group
+Spanish Mastiff,71.12,88.9,63.502931800000006,90.718474,10,12,0.2,0.6,0.4,0.6,0.2,Sweet,Foundation Stock Service
+Spanish Water Dog,40.005,50.165,14.06136347,22.22602613,12,14,1,0.2,0.8,1,0.4,Energetic,Herding Group
+Spinone Italiano,55.88,68.58,32,37,10,12,0.4,0.6,0.8,0.6,0.6,Friendly,Sporting Group
+Stabyhoun,48.26,53.34,18.143694800000002,27.2155422,13,15,0.2,0.6,0.8,0.8,0.6,Smart,Foundation Stock Service
+Staffordshire Bull Terrier,35.56,40.64,10.886216880000001,17.23651006,12,14,0.4,0.4,0.8,0.2,0.8,Smart,Terrier Group
+Standard Schnauzer,44.45,49.53,13.6077711,22.6796185,13,16,0.6,0.2,0.6,0.4,0.8,Courageous,Working Group
+Sussex Spaniel,33.02,38.1,15.875732950000002,20.41165665,13,15,0.6,0.6,0.6,0.4,0.4,Friendly,Sporting Group
+Swedish Lapphund,40.64,50.8,13.6077711,20.41165665,12,14,0.4,0.6,0.6,0.2,0.6,Playful,Foundation Stock Service
+Swedish Vallhund,29.21,34.925,9.071847400000001,15.875732950000002,12,15,0.2,0.6,1,1,0.8,Friendly,Herding Group
+Taiwan Dog,43.18,50.8,11.793401620000001,18.143694800000002,9,13,0.4,0.6,1,0.8,0.4,Loyal,Foundation Stock Service
+Teddy Roosevelt Terrier,20.32,38.1,3.62873896,11.33980925,14,16,0.4,0.6,0.8,1,0.8,Playful,Miscellaneous Class
+Thai Ridgeback,50.8,60.96,15.875732950000002,34.01942775,12,13,0.2,0.6,0.8,0.4,0.4,Loyal,Foundation Stock Service
+Tibetan Mastiff,60.96,66.04,31.751465900000003,68.0388555,10,12,0.6,0.6,0.6,0.4,0.6,Independent,Working Group
+Tibetan Spaniel,25.4,25.4,4.082331330000001,6.80388555,12,15,0.4,0.6,0.4,0.6,0.6,Playful,Non-Sporting Group
+Tibetan Terrier,35.56,43.18,8.164662660000001,13.6077711,15,16,0.6,0.6,0.8,0.4,0.4,Sweet,Non-Sporting Group
+Tornjak,58.42,71.12,28.12272694,49.895160700000005,12,14,0.4,0.8,0.6,0.6,0.6,Friendly,Foundation Stock Service
+Tosa,54.61,59.69,45.359237,90.718474,10,12,0.2,0.4,0.4,0.6,0.4,Courageous,Foundation Stock Service
+Toy Fox Terrier,21.59,29.21,1.587573295,3.17514659,13,15,0.4,0.4,0.8,1,0.8,Friendly,Toy Group
+Transylvanian Hound,55.88,66.04,24.947580350000003,24.947580350000003,10,14,0.4,0.6,1,0.2,0.2,Courageous,Foundation Stock Service
+Treeing Tennessee Brindle,40.64,60.96,13.6077711,22.6796185,10,12,0.4,0.4,0.6,0.6,0.6,Friendly,Foundation Stock Service
+Treeing Walker Coonhound,50.8,68.58,22.6796185,31.751465900000003,12,13,0.2,0.6,0.6,0.4,0.8,Smart,Hound Group
+Vizsla,53.34,60.96,19.958064280000002,27.2155422,12,14,0.4,0.6,0.8,1,0.8,Sweet,Sporting Group
+Weimaraner,58.42,68.58,24.947580350000003,40.8233133,10,13,0.4,0.6,1,1,0.8,Friendly,Sporting Group
+Welsh Springer Spaniel,43.18,48.26,15.875732950000002,24.947580350000003,12,15,0.4,0.6,0.8,0.8,0.8,Friendly,Sporting Group
+Welsh Terrier,38.1,38.1,9.071847400000001,9.071847400000001,12,15,0.6,0.4,0.8,0.6,1,Friendly,Terrier Group
+West Highland White Terrier,25.4,27.94,6.80388555,9.071847400000001,13,15,0.8,0.6,0.6,0.6,0.8,Loyal,Terrier Group
+Wetterhoun,12.7,58.42,22.6796185,34.01942775,13,13,0.2,0.4,0.6,0.2,0.4,Loyal,Foundation Stock Service
+Whippet,45.72,55.88,11.33980925,18.143694800000002,12,15,0.2,0.4,0.6,0.4,0.4,Sweet,Hound Group
+Wire Fox Terrier,38.1,38.1,6.80388555,8.164662660000001,12,15,0.4,0.2,0.6,0.6,0.6,Confident,Terrier Group
+Wirehaired Pointing Griffon,50.8,60.96,15.875732950000002,31.751465900000003,12,15,0.4,0.6,1,0.6,0.6,Friendly,Sporting Group
+Wirehaired Vizsla,54.61,63.5,20.41165665,29.48350405,12,14,0.2,0.6,0.8,0.6,0.6,Gentle,Sporting Group
+Working Kelpie,48.26,63.5,12.70058636,27.2155422,12,15,0.2,0.6,0.8,0.4,0.6,Alert,Foundation Stock Service
+Xoloitzcuintli,25.4,58.42,4.535923700000001,24.947580350000003,13,18,0.2,0.2,0.8,0.6,0.6,Loyal,Non-Sporting Group
+Yakutian Laika,53.34,58.42,18.143694800000002,24.947580350000003,10,12,0.4,0.6,0.8,0.2,0.4,Sweet,Foundation Stock Service
+Yorkshire Terrier,17.78,20.32,3.17514659,3.17514659,11,15,1,0.2,0.6,0.2,0.8,Sweet,Toy Group
