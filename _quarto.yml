@@ -1,0 +1,33 @@
+project:
+  type: website
+  output-dir: docs
+  preview:
+    port: 4200
+    browser: true
+  # resources:
+    # - worksheets/ #Add worksheets directory to docs
+    # - notes/ #Add notes directory to docs
+bibliography: "assets/epsy8264.bib"
+csl: 'assets/apa-single-spaced.csl'
+
+
+format:
+  html:
+    theme: 
+      - como
+      - "assets/theme.scss"
+    # css: ["assets/sticky-notes.css", "assets/table-styles.css"]
+    include-in-header: 'assets/exercises.js'
+    code-copy: true
+    # code-tools:
+      # source: true
+      # toggle: true
+      # caption: "Quarto Code"
+    highlight-style: "a11y-dark"
+    # df-print: paged
+    # mainfont: 'Atkinson Hyperlegible'
+    # fontsize: '13pt'
+    # linestretch: '1.5em'
+    linkcolor: '#0072b2'
+    embed-resources: true
+editor: source

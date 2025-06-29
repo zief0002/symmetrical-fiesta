@@ -1,0 +1,254 @@
+---
+title: "Statistical Inference for the Regression Model"
+date: today
+---
+
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
+```
+
+Recall that there are a certain set of assumptions underlying the linear regression model (both the simple and multiple regression models). These assumptions are:
+
+- **A.1**: The model is correctly specified.
+- **A.2**: The design matrix, **X**, is of full rank.
+- **A.3**: The population errors given **X** have a mean of zero.
+- **A.4**: The population errors given **X** are homoscedastic.
+- **A.5**: The population errors given **X** are independent.
+- **A.6**: The predictor values are fixed with finite, non-zero variance.
+
+Another assumption that is useful for inference is:
+
+- **A.7**: The population errors given **X** are normally distributed.
+
+<br />
+
+
+## Sampling Distribution of the OLS Estimators
+
+When **X** is fixed, the **b** vector can be written as a linear transformation of the response vector **y**:
+
+
+$$
+\begin{split}
+\mathbf{b} &= (\mathbf{X}^\intercal\mathbf{X})^{-1}(\mathbf{X}^\intercal\mathbf{y}) \\[2ex]
+&= \mathbf{My}
+\end{split}
+$$
+
+where $\mathbf{M} = (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^\intercal$.
+
+Previously we showed that the estimators in **b** are unbiased estimates of $\boldsymbol\beta$, that is $\mathbb{E}(\mathbf{b})=\boldsymbol\beta$. We can also define the variance–covariance matrix of **b** as:
+
+$$
+\begin{split}
+\mathrm{Var}(\mathbf{b}) &= \mathbf{M}\mathrm{Var}(\mathbf{y})\mathbf{M}^\intercal \\[2ex]
+&= \big[(\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^\intercal\big]\sigma^2_\epsilon\mathbf{I} \big[(\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^\intercal\big]^\intercal
+\end{split}
+$$
+
+Rearranging this and using our rules of transposes and inverses, we get:
+
+$$
+\begin{split}
+\mathrm{Var}(\mathbf{b}) &= \big[(\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^\intercal\big]\sigma^2_\epsilon\mathbf{I} \big[(\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^\intercal\big]^\intercal \\[2ex]
+&= \sigma^2_\epsilon (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^\intercal\mathbf{X} (\mathbf{X}^\intercal\mathbf{X})^{-1} \\[2ex]
+&= \sigma^2_\epsilon (\mathbf{X}^\intercal\mathbf{X})^{-1}
+\end{split}
+$$
+
+This implies that the sampling variances and covariances of the estimators depend only on the predictor values and the error variance. This matrix is often referred to as **V**.
+
+Note that to derive this, we only need the assumption of linearity. The normality assumption is not used to compute the mean (expectation) nor the sampling variance, nor covariances of the estimators. However, if the errors (and hence **y**) are normally distributed (i.e., assumption **A.7**), then so are the sampling distributions of the estimators. We can express these distributions as:
+
+$$
+\mathbf{b} \sim \mathcal{N}\bigg(\boldsymbol\beta,~ \sigma^2_\epsilon(\mathbf{X}^\intercal\mathbf{X})^{-1}\bigg)
+$$
+<br />
+
+
+## Inference for the Estimators
+
+An individual estimator, $b_j$, has a sampling distribution of:
+
+$$
+b_j \sim \mathcal{N}\bigg(\beta_j,~ \mathbf{V}_{jj}\bigg)
+$$
+
+where $\mathbf{V}_{jj}$ is the element in the *j*th row and *j*th column of the variance–covariance matrix for **b**. To test the hypothesis that:
+
+$$
+H_0: \beta_j = \beta_j^{(0)}
+$$
+
+where $\beta_j^{(0)}$ is some value (e.g., $H_0: \beta_j = 0$), we compute the ratio:
+
+$$
+Z_0 = \frac{b_j - \beta_j^{(0)}}{\sqrt{\mathbf{V}_{jj}}} 
+$$
+
+
+which is unit-normal distributed; $\mathcal{N}(0, 1)$. Note the denominator is the standard deviation of the sampling distribution for $b_j$.
+
+Unfortunately, in practice we do not know $\sigma_\epsilon$ to compute **V**. Instead, we substitute in the estimate for this value from our sample, the unbiased estimator $s_e$, where,
+
+$$
+s_e = \frac{\mathbf{e}^\intercal\mathbf{e}}{n-k-1}
+$$
+
+where *n* is the sample size, *k* is the number of predictors in the model, and $n − k − 1$ is the residual degrees of freedom for the model. Thus, we get an estimate of the variance–covariance matrix using:
+
+
+$$
+\begin{split}
+\widehat{\mathrm{Var}(\mathbf{b})} &= s^2_e (\mathbf{X}^\intercal\mathbf{X})^{-1} \\[2ex]
+&= \frac{\mathbf{e}^\intercal\mathbf{e}}{n-k-1}(\mathbf{X}^\intercal\mathbf{X})^{-1}
+\end{split}
+$$
+
+The standard error for $b_j$ is then estimated using the *j*th diagonal element of this matrix, namely $\sqrt{\hat{v}_{jj}}$.
+
+:::fyi
+**MATH NOTE**
+
+There is a theorem which says that (1) if *Z* is a standard normal variable and *W* is chi-squared distributed with $\nu$ degrees of freedom, and (2) *Z* and *W* are independent, then *T*, defined as:
+
+$$
+T = \frac{Z}{\sqrt{\frac{W}{\nu}}}
+$$
+
+will follow a *t*-distribution with $\nu$ degrees of freedom.
+:::
+
+
+Since it can be shown that $(n−𝑘− 1)\frac{s^2_e}{\sigma^2_\epsilon}$ follows a chi-squared distribution with $n-l-1$ degrees of freedom, and
+also that $b_j$ and $s^2_e$ are independent; it follows that:
+
+$$
+T = \frac{b_j - b_j^{(0)}}{\sqrt{\mathbf{V}_{jj}}}
+$$
+
+is *t*-distributed with $n-k-1$ degrees of freedom. To evaluate the hypothesis that $H_0∶ \beta_j = \beta_j^{(0)}$, we compute the
+test statistic:
+
+$$
+t_0 = \frac{b_j - b_j^{(0)}}{\sqrt{\mathbf{V}_{jj}}}
+$$
+
+and evaluate it within the t-distribution having $n-k-1$ degrees of freedom (where *n* is the sample size, and *k* is the number of predictors in the model).
+
+<br />
+
+
+## Confidence Intervals
+
+A $1−\alpha$% confidence interval can also be constructed for each coefficient using:
+
+$$
+\begin{split}
+\mathrm{CI}_{1−\alpha} &= b_j \pm |t^*_{\alpha/2}| \times \bigg(s_e (\mathbf{X}^\intercal\mathbf{X})^{-1}\bigg) \\[2ex]
+&= b_j \pm |t^*_{\alpha/2}| \times \sqrt{\mathbf{V}_{jj}}
+\end{split}
+$$
+
+where $t^*_{\alpha/2}$ is the critical value demarcating the area in the $\alpha/2$ proportion of the distribution in the *t*-distribution with $n-k-1$ degrees of freedom. For example, if we wanted to compute a 95% CI, then $\alpha = 0.05$ and $t^*_{.025}$ would be the critical value that demarcates the lowest 0.025 of the *t*-distribution.
+
+<br />
+
+
+## Model-Level Inference
+
+At the model-level we are interested in testing the hypothesis $H_0∶ \rho^2 = 0$. Recall this is equivalent to testing the hypothesis that all the regression parameters (except the intercept) in the model are zero:
+
+$$
+H_0: \beta_1 = \beta_2 = \beta_3=\ldots = \beta_k = 0
+$$
+
+This is a specific form of the general linear hypothesis which can be expressed as:
+
+$$
+H_0: \mathbf{L}\boldsymbol\beta = \mathbf{c}
+$$
+
+where,
+
+- **L** is a $q \times (k + 1)$ matrix referred to as the *hypothesis matrix*, where *q* is the number of parameters being tested;
+- $\boldsymbol\beta$ is a $(k + 1) \times 1$ vector of parameters included in the model; and
+- **c** is a $q \times 1$ vector of hypothesized values
+
+As an example, if we wanted to test the model-level null hypothesis in a two predictor model ($y_i = \beta_0 + \beta_1(x_{1i}) + \beta_2(x_{2i}) + \epsilon_i$),
+
+$$
+H_0: \beta_1 = \beta_2 = 0
+$$
+
+Then the general linear hypothesis could be expressed as:
+
+$$
+H_0: \begin{bmatrix}0 & 1 & 0 \\0 & 0 & 1\end{bmatrix}\begin{bmatrix}\beta_0 \\ \beta_1 \\ \beta_2\end{bmatrix} = \begin{bmatrix}0 \\0\end{bmatrix}
+$$
+
+This results in:
+
+$$
+H_0: \begin{bmatrix}\beta_1 \\ \beta_2\end{bmatrix} = \begin{bmatrix}0 \\0\end{bmatrix}
+$$
+
+We can construct a test statistic, $F_0$, as:
+
+$$
+F_0 = \frac{(\mathbf{Lb} − \mathbf{c})^\intercal[\mathbf{L}(\mathbf{X}^\intercal\mathbf{X})^{−1}\mathbf{L}^\intercal]^{−1}(\mathbf{Lb} − \mathbf{c})}{q(s^2_e)}
+$$
+
+This follows an *F*-distribution with *q* and $n-k-1$ degrees of freedom.
+
+<br />
+
+
+## Implications for Applied Researchers
+
+If the assumptions underlying the strong classical regression model (**A.1**--**A.7**) are all valid, then the OLS estimators $b_0, b_1, \ldots, b_k$ are good estimators of the parameters $\beta_0, \beta_1, \ldots, \beta_k$. They are unbiased and efficient and have accurate sampling variances and covariance (i.e., they are BLUE).
+
+Of course, any of the assumptions may be challenged either on *a priori* substantive grounds, or *post hoc*, via empirical examination of the sample residuals. If one (or more) of the assumptions are violated, then some of the properties may be compromised. Let’s look at violation in turn:
+
+
+**Violating A.1: The model is not correctly specified.**
+
+This is probably the most egregious and costly violation. Violating this assumption means that the theoretical model embodied in the regression equation is wrong. If this is the case, there is no use proceeding.
+
+
+**Violating A.2: The design matrix, X, is not of full rank.**
+
+This would mean that we cannot compute an inverse for the $\mathbf{X}^\intercal\mathbf{X}$ matrix. Subsequently, we could not compute any parameter estimates nor SEs.
+
+
+**Violating A.3: The population errors given X do not have a mean of zero.**
+
+The estimator $b_0$ (the intercept) will be biased when this assumption is violated. However, the other regression estimators (e.g., $b_0, b_1, \ldots, b_k$) are still BLUE. Unfortunately, we can never test this assumption in practice since $\sum e_i =0$ always holds when using OLS.
+
+**Violating A.4: The population errors given X are heteroscedastic.**
+
+If the assumption of constant variance is violated, the coefficient estimators will remain unbiased. However, the estimates for the variances/standard errors for these coefficients will be wrong. This also impacts the confidence intervals and hypothesis tests for these parameters. There are solutions to this problem, including using a different estimation method (e.g., weighted least squares) or estimating the sampling variances for these coefficients differently (e.g., sandwich estimation).
+
+
+**Violating A.5: The population errors given X are not independent.**
+
+If the errors are correlated (not independent), the coefficient estimators will still be unbiased. Again, however, the variances/standard errors and results from the confidence intervals and hypothesis tests will be wrong. Often the hypothesis tests will indicate statistical significance much more often then it should (increased probability of a type I error). Dealing with this problem requires using models that account for the correlation (e.g., mixed-effects models) and different estimation methods (e.g., maximum likelihood).
+
+
+**Violating A.6: The predictor values are not fixed.**
+
+When **X** is fixed, the predictors are uncorrelated with the error terms. This is what leads to unbiased estimates of both the estimators and the variances/standard errors. When **X** is random (which is almost always the case in observational data), we need to assume that $\mathrm{Cov}(\mathbf{X}, \boldsymbol\epsilon) = \mathbf{0}$. That is **we assume that the predictor values are generated by a mechanism unrelated to the errors**. If that is not the case, then the OLS estimates will be biased
+
+
+**Violating A.7: The population errors given X are not normally distributed.**
+
+Violation of the normality assumption causes the least number of problems. Under non-normality the regression estimators are still BLUE, and $s^2_e$ is still an unbiased estimator of $\sigma^2_\epsilon$. However, the under non-normality, the use of the *F*- and *t*-distributions for inference is questionable, especially if the sample size is small. If the sample size is large, the sampling distributions of the coefficients are approximately normal (i.e., Central Limit Theorem) and the use of the *F*- and *t*-distributions for inference is justified.
+
+<br />
+
+
+<!-- ## References -->
+
+
+

@@ -1,0 +1,67 @@
+---
+title: "Repository for EPSY 8264"
+subtitle: "Fall 2025"
+date: today
+---
+
+
+
+
+## Course Materials
+
+<nav aria-label="materials">
+- [Syllabus](https://docs.google.com/document/d/1EgJKuDkiIARgaHWutzh97DvgT9mlOwIwjMhZks1cngA/edit?usp=sharing)
+- [Textbook: Matrix Algebra for Educational Scientists](https://zief0002.github.io/matrix-algebra/)
+</nav>
+
+<br />
+
+
+## Assignments
+
+<nav aria-label="assignments">
+- [Assignment 1]()
+- [Assignment 2]()
+- [Assignment 3]()
+- [Assignment 4]()
+- [Assignment 5]()
+- [Assignment 6]()
+- [Assignment 7]()
+</nav>
+
+<br />
+
+
+## Notes
+
+<nav aria-label="notes">
+- **Mathematical and Computational Foundations**
+  + [Summation, Expectation, Variance, Covariance, and Correlation](notes/01-01-summation-expectation.html) 
+  + [OLS Estimators and Their Properties](notes/01-02-ols-estimators-and-their-properties.html)
+  + [Assumptions for OLS Regression and the Gauss-Markov Theorem](notes/01-03-assumptions-and-gauss-markov-theorem.html)
+  + [Statistical Inference for the Regression Model](notes/01-04-statistical-inference-for-the-regression-model.html) 
+  + [A Regression Example in Practice](notes/01-05-regression-example.html) 
+  + [Regression From Summary Measures](notes/01-06-regression-from-summary-measures.html)
+- **Path Analysis**
+  + [Introduction to Path Analysis](notes/02-01-intro-to-path-analysis.html)
+  + [Path Analysis Using R](notes/02-02-path-analysis-using-r.html)
+- **Regression Diagnostics**
+  + [Regression Diagnostics](notes/03-01-regression-diagnostics.html)
+- **Tools for Dealing with Heteroskedasticity**
+  + [Heteroskedasticity and Variance Stabilizing Transformations](notes/04-01-heteroskedasticity-and-transformations.html)
+  + [Weighted Least Squares (WLS) and Sandwich Estimation](notes/04-02-wls-and-sandwich-estimation.html)
+- **Diagnosing Collinearity and Tools for Dealing With It**
+  + [Diagnosing Collinearity](notes/05-01-diagnosing-collinearity.html)
+- **Model Selection**
+</nav>
+
+
+<br />
+
+
+## Worksheets
+
+<nav aria-label="worksheets">
+- [Introduction to Matrix Algebra](worksheets/01-introduction-to-matrix-algebra.html)
+- [Model Selection](worksheets/02-model-selection.html)
+</nav>

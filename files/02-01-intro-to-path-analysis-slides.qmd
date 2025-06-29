@@ -1,0 +1,728 @@
+---
+title: "🎶 Path Analysis"
+format:
+  revealjs:
+    smaller: true
+    scrollable: true
+    code-copy: true
+    code-fold: false
+    # css: ["../assets/style.css", "../assets/notes.css", "../assets/gt-table-styles.css"]
+date: today
+bibliography: '../assets/epsy8264.bib'
+csl: '../assets/apa-single-spaced.csl'
+---
+
+
+## What are Path Diagrams?
+
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
+```
+
+
+Path diagrams are visual depictions of the hypothesized relationships between a set of variables. In this set of notes, we will introduce some of the ideas and concepts related to path diagrams, and the estimation of effects depicted in a path diagram (i.e., path analysis).
+
+- [[R Script File]](https://raw.githubusercontent.com/zief0002/redesigned-adventure/main/scripts/03-02-path-analysis.R)
+
+
+## Example
+
+To help us in this endeavor, we will consider three potential student-level variables for our path model:
+
+- Achievement
+- Academic Ability
+- Motivation
+
+
+## Simulating Data
+
+```{r}
+# Load Libraries
+library(tidyverse)
+library(broom)
+library(corrr)
+
+# Create correlation matrix
+corrs = matrix(
+  data = c(
+    1.000, 0.737, 0.255,
+    0.737, 1.000, 0.205,
+    0.255, 0.205, 1.000
+  ),
+  nrow = 3
+)
+
+# Create mean vector
+means = c(0, 0, 0) 
+
+# Set sample size
+n = 1000           
+```
+
+
+## Simulating Data (cntd.)
+
+```{r}
+# Make simulation reproducible
+set.seed(1)
+
+
+# Simulate the data and convert to data frame
+sim_dat <- data.frame(MASS::mvrnorm(n = 1000, mu = means, Sigma = corrs, empirical = TRUE)) |>
+  rename(
+    achievement = X1,
+    ability = X2, 
+    motivation = X3
+  )
+
+
+# View simulated data
+head(sim_dat)
+```
+
+
+
+## Reading a Path Diagram
+
+In a path diagram, 
+
+- Variables we have data on (i.e., manifest or measured variables) are represented by squares or rectangles. 
+- Lines between the variables indicate a relationship between the two connected variables. The lines between the different variables are called paths. 
+  - If the path has an arrowhead on both sides, it indicates the two connected variables are related (i.e., correlated).
+  - If the path has an arrowhead on only one side, it indicates a hypothesized causal relationship. The cause is in the direction of the arrow; that is, the hypothesized cause is at the butt end of the line, while the hypothesized effect is at the arrowhead side of the line.
+
+
+## Reading a Path Diagram (cntd.)
+
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/10-symbols.png")
+```
+
+
+
+## Two Example Path Diagrams
+
+:::: {.columns}
+
+In both of the examples below, there are three manifest/measured variables (academic ability, motivation, and achievement) and three paths (p1, p2, and p3). The difference between the two is that in the right-hand diagram, there are hypothesized causal relationships, while in the left-hand diagram the relationships are not presumed to be causal.
+
+::: {.column width="50%"}
+
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/01-correlation-path.png")
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/03-weak-causal-path.png")
+```
+
+:::
+
+::::
+
+
+
+## Path Diagram 1
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/01-correlation-path.png")
+```
+:::
+
+::: {.column width="50%"}
+The model depicted in this path diagram posits that there are relationships between: 
+
+- Academic ability and achievement (p1); 
+- Academic ability and motivation (p2); and 
+- Motivation and achievement (p3).  
+
+The double-headed arrows on the paths indicate that the variables are related (i.e., correlated), although there is no causal direction hypothesized. 
+:::
+
+::::
+
+
+## Estimating Path Coefficients in Path Diagram 1
+
+:::: {.columns}
+
+In a path analysis, one goal is to estimate path coefficients. In this model, since the paths represent the relationship between two variables, the path coefficients are simply the bivariate correlations between each set of variables. 
+
+
+::: {.column width="50%"}
+
+```{r}
+# Compute correlations
+sim_dat |>
+  correlate()
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/02-correlation-path-values.png")
+```
+:::
+::::
+
+## Weak Causal Ordering
+
+In path modeling, we often assert *weak causal ordering* on the variables in the model. With weak causal ordering, we are not saying *X* causes *Y*, but rather that *if* *X* and *Y* are casually related, one of these variables (typically *X*) is the cause of the other. 
+
+```{mermaid}
+flowchart LR
+  A[X] --> B[Y]
+```
+
+In this model, the paths have arrows at only one end indicating the hypothesized causal relationship. The cause is in the direction of the arrow, that is the hypothesized cause is at the butt end of the line, while the hypothesized effect is at the arrowhead side of the line. 
+
+
+> Any weak causal model should be posited prior to collecting or looking at the data! Creating this model can also help you identify the data to collect.
+
+
+## Path Model 2: Weak Causal Ordering
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/03-weak-causal-path.png")
+```
+:::
+
+::: {.column width="50%"}
+The model depicted in this path diagram posits the following causal relationships: 
+
+- If academic ability and achievement are causally related, then academic ability is the cause of achievement.
+- If academic ability and motivation are causally related, then academic ability is the cause of motivation.
+- If motivation and achievement are causally related, then motivation is the cause of achievement.
+:::
+
+::::
+
+
+## Estimating Path Coefficients in a Weak Causal Model
+
+Again, we would want to estimate the path coefficients shown in the diagram for the weak causal model. In causal models, the path coefficients are not necessarily the correlations. To find the path coefficients we need to use the *tracing rule*. The tracing rule indicates that:
+
+<blockquote>
+The correlation between two variables *X* and *Y* is equal to the sum of the possible products of all possible paths from each possible tracing from *X* to *Y*, with the following two exceptions:
+
+- The same variable is not entered more than once in the same tracing.
+- A variable is not both entered and exited through an arrowhead.
+</blockquote>
+
+
+## Example of the Tracing Rule
+
+As an example, consider all the tracings (routes) that allow us to start at the academic ability variable and go to the achievement variable in the path diagram at right. 
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/03-weak-causal-path.png")
+```
+:::
+
+::: {.column width="50%"}
+
+There are two possible tracings that conform to the tracing rule:
+
+1. Start at the academic ability variable and take p1 to the achievement variable.
+2. Start at the academic ability variable and take p2 to the motivation variable, then take p3 to the achievement variable.
+
+:::
+
+::::
+
+
+## Example of the Tracing Rule (cntd.)
+
+Similarly, we could have started at the achievement variable and determined the tracings to get to the academic ability variable:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/03-weak-causal-path.png")
+```
+:::
+
+::: {.column width="50%"}
+
+1. Start at the achievement variable and take p1 to the academic ability variable.
+2. Start at the achievement variable and take p3 to the motivation variable, then take p2 to the academic ability variable.
+
+:::
+
+::::
+
+## Important Note Regarding the Tracing Rule
+
+Note that when we are considering tracings, we do not have to worry about the direction of the arrow, only that there is a path we can trace. The only rule regarding arrowheads is that a variable can not be both entered and exited through an arrowhead.
+
+
+## Back to Estimating the Path Coeffients
+
+Each tracing yields a product of the path coefficents used in the tracing. Thus the first tracing is $p1$ (there is only one path, so the product is simply the path), and the second tracing yields $p2 \times p3$. Since the tracing rule says that the correlation between academic ability and achievement is equal to the sum of the products yielded by the tracings, we know that:
+
+$$
+\begin{split}
+r_{\mathrm{academic~ability,~ achievement}} &= p1 + p2(p3) \\[1em]
+.737 &= p1 + p2(p3)
+\end{split}
+$$
+
+## Your Turn
+
+Use the tracing rule to write two more equations. The first equation should represent the correlation between motivation and achievement, and the second equation should represent the correlation between ability and motivation.
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/03-weak-causal-path.png")
+```
+
+
+## Check Your Work
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/03-weak-causal-path.png")
+```
+:::
+
+::: {.column width="50%"}
+
+To represent the correlation between motivation and achievement we have two potential tracings:
+
+1. Start at the motivation and take p3 to the achievement variable.
+2. Start at the motivation variable and take p2 to the academic ability variable, then take p1 to the achievement variable.
+
+$$
+\begin{split}
+r_{\mathrm{motivation,~ achievement}} &= p3 + p2(p1) \\[1em]
+.255&= p3 + p2(p1)
+\end{split}
+$$
+
+
+:::
+
+:::::
+
+
+## Check Your Work
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/03-weak-causal-path.png")
+```
+:::
+
+::: {.column width="50%"}
+
+To represent the correlation between academic ability and motivation  we have one tracing:
+
+1. Start at the academic ability and take p2 to the motivation variable.
+
+
+$$
+\begin{split}
+r_{\mathrm{academic~ability,~ motivation}} &= p2 \\[1em]
+.205&= p2
+\end{split}
+$$
+
+QUESTION: Why can't we use the tracing that takes p1 from academic ability to achievement then takes p3 to motivation??
+
+:::
+
+:::::
+
+
+## Solving for p1, p2, and p3
+
+::: {.panel-tabset}
+
+### Equations
+
+We now have three equations with three unknowns. We can solve this system of equations to find p1, p2, and p3.
+
+
+$$
+\begin{split}
+.737 &= p1 + p2(p3) \\[1em]
+.255 &= p3 + p2(p1) \\[1em]
+.205 &= p2
+\end{split}
+$$
+
+### p1
+
+Substitute in .205 for p2 in the first equation and solve for p1.
+
+
+$$
+\begin{split}
+.737 &= p1 + p2(p3) \\[1em]
+.737 &= p1 + .205(p3) \\[1em]
+p1 &= .737 - .205(p3)
+\end{split}
+$$
+
+### p3
+
+Now substitute .205 in for p2 and $.737 - .205(p3)$ in for p1 in the second equation and solve for p3.
+
+$$
+\begin{split}
+.255 &= p3 + p2(p1) \\[1em]
+.255 &= p3 + .205(.737 - .205(p3)) \\[1em]
+.255 &= p3 + 0.151085 - 0.042025(p3) \\[1em]
+0.103915 &= 0.957975(p3) \\[1em]
+p3 &= .108
+\end{split}
+$$
+
+### Back to p1
+
+Now substitute .205 in for p2 and .108 in for p3 in the first equation and solve for p1.
+
+$$
+\begin{split}
+.737 &= p1 + p2(p3) \\[1em]
+.737 &= p1 + .205(.108) \\[1em]
+.737 &= p1 + 0.02214 \\[1em]
+p1 &= .715
+\end{split}
+$$
+
+:::
+
+
+## Path Diagram with Estimated Path Coefficients
+
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/04-estimated-weak-causal-model.png")
+```
+
+
+## Interpreting Path Coefficients
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/04-estimated-weak-causal-model.png")
+```
+:::
+
+::: {.column width="50%"}
+
+Path coefficients are **standardized** coefficients which can be interpreted similar to standardized regression coefficients.
+
+- Given the adequacy of the path model, each 1-standard deviation increase in motivation increases achievement by .108 standard deviations, on average.
+- Given the adequacy of the path model, each 1-standard deviation increase in academic ability increases achievement by .715 standard deviations, on average.
+- Given the adequacy of the path model, each 1-standard deviation increase in academic ability increases motivation by .205 standard deviations, on average.
+
+:::
+
+::::
+
+## Interpreting Path Coefficients (cntd.)
+
+There are two things to note when we interpret path coefficients that are different from when we interpret regression coefficients.
+
+- We include "given the adequacy of the model" in our interpretation. This is important because the values of the path coefficients absolutely depend on the weak causal model specified (i.e., how you draw the path diagram).
+- Because we are positing a causal relationship, we can use the causal type language in our interpretation. E.g., an increase in *X* leads to an increase in *Y*.
+
+Note also that the interpretation is not controlling for anything. These are simple relationships that we are interpreting.
+
+
+## Estimating Path Coefficients via Regression
+
+:::: {.columns}
+
+We can also find the path coefficients using regression rather than algebra. To determine the path coefficients in the weak causal model, we fit a set of regression models using the "causes" as predictors of any particular effect. 
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/03-weak-causal-path.png")
+```
+:::
+
+::: {.column width="50%"}
+In our path diagram there are two effects, so we would need to fit two separate regression models. The syntax for these models would be:
+
+```
+achievement ~ 0 + ability + motivation
+motivation ~ 0 + ability
+```
+:::
+
+::::
+
+
+## Estimating Path Coefficients via Regression (cntd.)
+
+```{r}
+# Path coefficients for paths to achievement
+tidy(lm(achievement ~ 0 + ability + motivation, data = sim_dat))
+```
+
+<br />
+
+```{r}
+# Path coefficient for paths to motivation
+tidy(lm(motivation ~ 0 + ability, data = sim_dat))
+```
+
+
+## Residual Variation
+
+Even if the causal relationships were specified correctly, the model likely does not include ALL of the causes for motivation and achievement. There is also unaccounted for variation due to random variation and measurement error. To account for these three sources of variation in the weak causal model, we will add an error term to eavch of the effects in the path model.
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/05-est-weak-causal-model-errors.png")
+```
+
+## Estimating Residual Variation
+
+We can also estimate the path coefficients for the error terms. These path coefficients are computed as,
+
+$$
+\epsilon_k = \sqrt{1 - R^2_k}
+$$
+where, $R^2_k$ is the $R^2$-value from the regression model fitted to compute the initial path coefficients.
+
+
+## Estimating Residual Variation (cntd.)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+# Path coefficients for error term on achievement
+glance(lm(achievement ~ 0 + ability + motivation, data = sim_dat))
+sqrt(1 - .554)
+```
+
+<br />
+
+```{r}
+# Path coefficient for error term on motivation
+glance(lm(motivation ~ 0 + ability, data = sim_dat))
+sqrt(1 - .0420)
+```
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/06-complete-est-weak-causal-model.png")
+```
+
+:::
+
+::::
+
+
+## How Do We Draw Path Diagram?
+
+- Theory/prior research
+- Logic/expert understanding/common sense
+
+We also need to pay attention to **time precedence**. Cause does not operate backward in time. In our example, academic ability is well-documented as something that does not change after grade school. Thus, it would precede motivation and achievement in time. 
+
+
+## A Little More About Cause
+
+What do we mean when we say "*X* causes *Y*"? Contrary to popular belief, we do not mean that changing *X* has a direct, and immediate change on *Y*. For example, it is now well known that smoking causes lung cancer.
+
+```{r}
+#| echo: false
+#| out-width: "60%"
+include_graphics("../img/path-analysis-notes/09-smoking-cancer.png")
+```
+
+But, not everyone who smokes ends up getting lung cancer.
+
+
+## A Little More About Cause (cntd.)
+
+Instead, cause is a probabilistic statement about the world. When we say smoking causes lung cancer what we mean, statistically, is that smoking increases the probability of developing lung cancer. 
+
+<br />
+
+Moreover, this increased probability is due to smoking, and not something else.
+
+
+## Requirements for Cause
+
+There are three primary requirements for a causal relationship between *X* and *Y*.
+
+1. There must be a relationship between *X* and *Y*. (Correlation is a necessary component of causation.)
+2. Time precedence (Causes must occur prior to effects.)
+3. Relationship must not be spurious. 
+
+
+## Including Time Precedence in the Path Diagram
+
+Time precedence is often reflected in the orientation of the model. Variables that occur earlier in time are oriented further to the left side of the diagram than variables that occur later. 
+
+```{r}
+#| echo: false
+#| out-width: "60%"
+include_graphics("../img/path-analysis-notes/09-smoking-cancer.png")
+```
+
+In the smoking example, to be considered the cause for lung cancer, smoking has to occur prior to the onset of lung cancer.^[Note that the top--bottom orientation typically doesn't mean anything---it is just used for aesthetics in the layout.]
+
+
+## Including Time Precedence in the Path Diagram (cntd.)
+
+In our path diagram relating academic ability and motivation to acheivement, academic ability is furthest to the left (it occurs earliest), followed by motivation, and then academic achievement. 
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/06-complete-est-weak-causal-model.png")
+```
+
+
+
+## Common Cause
+
+A common cause is a variable that is a cause of both *X* and *Y* which accounts for the relationship between *X* and *Y*. Consider the following example where we want to look at the causal impact of participation in Head Start programs on academic achievement.
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/07-head-start-achievment.png")
+```
+
+In practice, the path coefficient tends to be negative. That is Head Start participants tend to have lower academic achievement than their non-Head Start peers.
+
+
+## Common Cause (cntd.)
+
+A common cause of both Head Start participation and academic achievement is poverty. This is shown below.
+
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/08-head-start-achievment-poverty.png")
+```
+
+Once we include poverty as a common cause, the path coefficient between Head Start participation and academic achievement switches direction. That is, after including poverty in the path model, Head Start participants tend to have higher academic achievement than their non-Head Start peers. This is akin to how effects in a regression model might change after we control for other predictors. 
+
+
+## Common Cause (cntd.)
+
+In order to meet the third causal requirement, we need to include ALL common causes in the model. This requirement is the hardest to prove.
+
+
+## Non-Recursive Models
+
+In the path diagrams we have looked at so far, the causal paths have gone in only one direction; there is a distinct cause and effect. The error terms on the effect variables are also all uncorrelated. These are called *recursive models*. It is possible for variables to effect each other (e.g., predator--prey relationships), or for the error terms to be correlated. This is called a *non-recursive model*.
+
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/11-nonrecursive-model.png")
+```
+
+
+## Under-Identified Models
+
+The problem with estimating the path coefficients in the non-recursive model is it is under-identified. In our predator--prey model, we need to estimate four path coefficients, but only have three correlations (equations) from which to do so. We can't solve this without adding additional constraints! 
+
+::::{.columns}
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+#| out-width: "100%"
+include_graphics("../img/path-analysis-notes/12-nonrecursive-model-paths.png")
+```
+:::
+
+
+::: {.column width="50%"}
+
+$$
+\begin{split}
+r_{\mathrm{H,W}} &= p1 + p2(p4) \\[1em]
+r_{\mathrm{H,R}} &= p2 + p1(p3) \\[1em]
+r_{\mathrm{H,W}} &= p3 + p4 + p1(p2)
+\end{split}
+$$
+
+:::
+
+::::
+
+
+## Over-Identified Models
+
+

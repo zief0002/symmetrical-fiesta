@@ -1,0 +1,446 @@
+---
+title: "Weighted Least Squares (WLS) and Sandwich Estimation"
+date: today
+---
+
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
+```
+
+
+
+
+In this set of notes, we will continue to use data from Statistics Canada's *Survey of Labour and Income Dynamics* (SLID; available in **slid.csv**) to explain variation in the hourly wage rate of employed citizens in Ontario.
+
+```{r}
+# Load libraries
+library(broom)
+library(car)
+library(corrr)
+library(educate)
+library(patchwork)
+library(tidyverse)
+
+# Import data
+slid = read_csv("https://raw.githubusercontent.com/zief0002/redesigned-adventure/main/data/slid.csv")
+
+# View data
+slid
+
+# Fit model
+lm.1 = lm(wages ~ 1 + age + education + male, data = slid)
+```
+
+In the previous set of notes, we found that the homoskedasticity assumption was likely violated; the plot of studentized residuals versus the fitted values showed severe fanning indicating that the variation in residuals seems to increase for higher fitted values. This assumption violation would produce incorrect sampling variances and covariances, and OLS estimates are no longer BLUE. Because of this, the SEs (and resulting *t*- and *p*-values) for the coefficients are incorrect. 
+
+Previously we tried to stabilize the variance by transforming the *y*-values. We found that even using the the optimal $\lambda$ value  of 0.086 for the Box-Cox transformation the heterogenity issue was still problematic. There are two other solutions to this assumption violation when variance stabilizing transformations do not fix things:
+
+1. Fit the model using weighted least squares rather than OLS; or
+2. Adjust the SEs and covariances to account for the non-constant variances
+
+<br />
+
+
+# Weighted Least Squares Estimation
+
+Another method for dealing with heteroskedasticity is to change the method we use for estimating the coefficients and standard errors. The most common method for doing this is to use weighted least squares (WLS) estimation rather than ordinary least squares (OLS).
+
+Under heteroskedasticity recall that the residual variance of the *i*th residual is $\sigma^2_i$, and the variance--covariance matrix of the residuals is defined as,
+
+$$
+\boldsymbol{\Sigma} =  \begin{bmatrix}\sigma^2_{1} & 0 & 0 & \ldots & 0 \\ 0 & \sigma^2_{2} & 0 & \ldots & 0\\ 0 & 0 & \sigma^2_{3} & \ldots & 0\\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \ldots & \sigma^2_{n}\end{bmatrix},
+$$
+
+This implies that the *n* observations no longer have the same reliability (i.e., precision of estimation). Observations with small variances have more reliability than observations with large variances. The idea behind WLS estimation is that those observations that are less reliable are down-weighted in the estimation of the overall error variance.
+
+<br />
+
+
+## Assume Error Variances are Known
+
+Let's assume that each of the error variances, $\sigma^2_i$, are known. This is generally not a valid assumption, but it gives us a point to start from. If we know these values, we can modify the likelihood function from OLS by substituting these values in for the OLS error variance, $\sigma^2_{\epsilon}$.
+
+$$
+\begin{split}
+\mathrm{OLS:} \qquad \mathcal{L}(\boldsymbol{\beta}) &= \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2_{\epsilon}}}\exp\left[-\frac{1}{2\sigma^2_{\epsilon}} \big(Y_i-\beta_0 - \beta_1X_{1i} - \beta_2X_{2i} - \ldots - \beta_kX_{ki}\big)^2\right] \\[1em]
+\mathrm{WLS:} \qquad \mathcal{L}(\boldsymbol{\beta}) &= \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2_{i}}}\exp\left[-\frac{1}{2\sigma^2_{i}} \big(Y_i-\beta_0 - \beta_1X_{1i} - \beta_2X_{2i} - \ldots - \beta_kX_{ki}\big)^2\right]
+\end{split}
+$$
+
+Next, we define the reciprocal of the error variances as $w_i$, or *weight*:
+
+$$
+w_i = \frac{1}{\sigma^2_i}
+$$
+
+This can be used to simplify the likelihood function for WLS:
+
+$$
+\begin{split}
+\mathcal{L}(\boldsymbol{\beta}) &= \bigg[\prod_{i=1}^n \sqrt{\frac{w_i}{2\pi}}\bigg]\exp\left[-\frac{1}{2} \sum_{i=1}^n w_i\big(Y_i-\beta_0 - \beta_1X_{1i} - \beta_2X_{2i} - \ldots - \beta_kX_{ki}\big)^2\right]
+\end{split}
+$$
+
+We can then find the coefficient estimates by maximizing $\mathcal{L}(\boldsymbol{\beta})$ with respect to each of the coefficients; these derivatives will result in *k* normal equations. Solving this system of normal equations we find that:
+
+$$
+\mathbf{b}_{\mathrm{WLS}} = (\mathbf{X}^{\intercal}\mathbf{W}\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{W}\mathbf{y}
+$$
+
+where **W** is a diagonal matrix of the weights,
+
+$$
+\mathbf{W} =  \begin{bmatrix}w_{1} & 0 & 0 & \ldots & 0 \\ 0 & w_{2} & 0 & \ldots & 0\\ 0 & 0 & w_{3} & \ldots & 0\\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \ldots & w_{n}\end{bmatrix}
+$$
+
+The variance--covariance matrix for the regression coefficients can then be computed using:
+
+$$
+\boldsymbol{\sigma^2}(\mathbf{B}) = \sigma^2_{\epsilon}(\mathbf{X}^{\intercal}\mathbf{W}\mathbf{X})^{-1}
+$$
+
+where the estimate for $\sigma^2_{\epsilon}$ is based on a weighted sum of squares:
+
+$$
+\hat\sigma^2_{\epsilon} = \frac{\sum_{i=1}^n w_i \times \epsilon_i^2}{n - k - 1}
+$$
+
+Which can be expressed in matrix algebra as a function of the weight matrix and residual vector as:
+
+$$
+\hat\sigma^2_{\epsilon} = \frac{(\mathbf{We})^{\intercal}\mathbf{e}}{n - k - 1}
+$$
+
+<br />
+
+
+### An Example of WLS Estimation
+
+
+To illustrate WLS, consider the following data which includes average ACT scores for a classroom of students, ACT score for the teacher, and the standard deviation of the class ACT scores.
+
+```{r}
+#| label: tbl-example
+#| tbl-cap: "Example data for weighted least squares."
+#| echo: false
+
+data.frame(
+  class_act = c(17.3, 17.1, 16.4, 16.4, 16.1, 16.2),
+  teacher_act = c(21, 20 , 19, 18, 17, 16),
+  class_sd = c(5.99, 3.94, 1.90, 0.40, 5.65, 2.59)
+) |>
+  kable(
+    col.names = c("Class Average ACT", "Teacher ACT", "Class SD"),
+    align = "c",
+    caption = "Example data for weighted least squares."
+  )
+```
+
+
+Suppose we want to use the teacher's ACT score to predict variation in the class average ACT score. Fitting this model using OLS, we can compute the coefficient estimates and the standard errors for each coefficient.
+
+```{r}
+# Enter y vector
+y = c(17.3, 17.1, 16.4, 16.4, 16.1, 16.2)
+
+# Create design matrix
+X = matrix(
+  data = c(rep(1, 6), 21, 20 , 19, 18, 17, 16),
+  ncol = 2
+)
+
+# Compute coefficients
+b = solve(t(X) %*% X) %*% t(X) %*% y
+
+# Compute SEs for coefficients
+e = y - X %*% b
+sigma2_e = t(e) %*% e / (6 - 1 - 1)
+V_b = as.numeric(sigma2_e) * solve(t(X) %*% X)
+sqrt(diag(V_b))
+```
+
+We could also have used built-in R functions to obtain these values:
+
+```{r}
+lm.ols = lm(y ~ 1 + X[ , 2])
+tidy(lm.ols, conf.int = TRUE)
+```
+
+The problem, of course, is that the variation in the residuals is not constant as the reliability for the 10 class average ACT values is not the same for each class; the standard deviations are different. Because of this, we may want to fit a WLS regression model rather than an OLS model.
+
+
+```{r}
+# Set up weight matrix, W
+class_sd = c(5.99, 3.94, 1.90, 0.40, 5.65, 2.59)
+w_i = 1 / (class_sd ^ 2)
+W = diag(w_i)
+W
+
+# Compute coefficients
+b_wls = solve(t(X) %*% W %*% X) %*% t(X) %*% W %*% y
+b_wls
+
+# Compute standard errors for coefficients
+e_wls = y - X %*% b_wls                                 # Compute errors from WLS
+mse_wls = (t(W %*% e_wls) %*% e_wls) / (6 - 1 - 1)      # Compute MSE estimate
+v_b_wls = as.numeric(mse_wls) * solve(t(X) %*% W %*% X) # Compute variance-covariance matrix for B
+sqrt(diag(v_b_wls))
+```
+
+The results of fitting both the OLS and WLS models appear below. Comparing the two sets of results, there is a difference in the coefficient values and in the estimated SEs when using WLS estimation rather than OLS estimation. This would also impact any statistical inference as well.
+
+
+```{r}
+#| label: tbl-coef
+#| tbl-cap: "Coefficients and SEs from the OLS and WLS models."
+#| echo: false
+tab_01 = data.frame(
+  cft = c("Intercept", "Effect of Teacher ACT Score"),
+  b_ols = b,
+  se_ols = sqrt(diag(V_b)),
+  b_wls = b_wls,
+  se_wls = sqrt(diag(v_b_wls))
+)
+
+kable(
+  tab_01,
+  row.names = FALSE,
+  col.names = c("Coefficient", "B", "SE", "B", "SE"),
+  align = c("l", "c", "c", "c", "c"),
+  digits = 4,
+  caption = "Coefficients and SEs from the OLS and WLS models."
+  ) |>
+  add_header_above(c(" " = 1, "OLS" = 2, "WLS" = 2), align = "c")
+```
+
+<br />
+
+
+### Fitting the WLS estimation in the lm() Function
+
+The `lm()` function can also be used to fit a model using WLS estimation. To do this we include the `weights=` argument in `lm()`. This takes a vector of weights representing the $w_i$ values for each of the *n* observations.
+
+```{r}
+# Create weights vector
+w_i = 1 / (class_sd ^ 2)
+
+# Fit WLS model
+lm_wls = lm(y ~ 1 + X[ , 2], weights = w_i)
+tidy(lm_wls, conf.int = TRUE)
+```
+
+Not only can we use `tidy()` and `glance()` to obtain coefficient and model-level summaries, but we can also use `augment()`, `anova()`, or any other function that takes a fitted model as its input.
+
+<br />
+
+
+## What if Error Variances are Unknown?
+
+The previous example assumed that the variance--covariance matrix of the residuals was known. In practice, this is almost never the case. When we do not know the error variances, we need to estimate them from the data.
+
+One method for estimating the error variances for each observation, is:
+
+1. Fit an OLS model to the data, and obtain the residuals.
+2. Square these residuals and regress them (using OLS) on the same set of predictors.
+3. Obtain the fitted values from Step 2.
+4. Create the weights using $w_i = \frac{1}{\hat{y}_i}$ where $\hat{y}_i$ are the fitted values from Step 3.
+5. Fit the WLS using the weights from Step 4.
+
+This is a two-stage process in which we (1) estimate the weights, and (2) use those weights in the WLS estimation. We will illustrate this methodology using the SLID data.
+
+```{r}
+# Step 1: Fit the OLS regression
+lm_step_1 = lm(wages ~ 1 + age + education + male + age:education, data = slid)
+
+# Step 2: Obtain the residuals and square them
+out_1 = augment(lm_step_1) |>
+  mutate(
+    e_sq = .resid ^ 2
+  )
+
+# Step 2: Regresss e^2 on the predictors from Step 1
+lm_step_2 = lm(e_sq ~ 1 + age + education + male + age:education, data = out_1)
+
+# Step 3: Obtain the fitted values from Step 2
+y_hat = fitted(lm_step_2)
+
+
+# Step 4: Create the weights
+w_i = 1 / (y_hat ^ 2)
+
+# Step 5: Use the fitted values as weights in the WLS
+lm_step_5 = lm(wages ~ 1 + age + education + male + age:education, data = slid, weights = w_i)
+```
+
+Before examining any output from this model, let's examine the residual plots. The residual plots suggest that the homoskedasticity assumption is much more reasonably satisfied after using WLS estimation; although it is still not perfect. The normality assumption looks untenable here.
+
+:::fyi
+**FYI**
+
+One way to proceed would be to apply a variance stabilizing transformation to **y** (e.g., log-transform) and then fit a WLS model. To do this you would go through the steps of estimating the weights again based on the transformed **y**.
+:::
+
+```{r}
+#| label: fig-resid-wls
+#| fig-cap: "Residual plots for the model that includes the main effects of age, education level, and sex fitted with WLS estimation."
+#| fig-alt: "Residual plots for the model that includes the main effects of age, education level, and sex fitted with WLS estimation."
+#| fig-width: 8
+#| fig-height: 4
+#| out-width: "100%"
+
+# Examine residual plots
+residual_plots(lm_step_5)
+```
+
+The WLS coefficient estimates, standard errors, and coefficient-level inference are presented below.
+
+```{r}
+# Examine coefficient-level output
+tidy(lm_step_5, conf.int = TRUE)
+```
+
+<br />
+
+
+# Adjusting the Standard Errors: Sandwich Estimation
+
+Since the primary effect of heteroskedasticity is that the sampling variances and covariances are incorrect, one method of dealing with this assumption violation is to use the OLS coefficients (which are still unbiased under heteroskedasticity), but make adjustments to the variance--covariance matrix of the coefficients. We can compute the adjusted variance--covariance matrix of the regression coefficients using:
+
+$$
+V(\mathbf{b}) = (\mathbf{X}^{\intercal}\mathbf{X})^{-1}\mathbf{X}^{\intercal}\boldsymbol{\Sigma}\mathbf{X} (\mathbf{X}^{\intercal}\mathbf{X})^{-1}
+$$
+
+where, $\boldsymbol{\Sigma}$ is the variance-covariance matrix of the residuals.
+
+:::fyi
+**VOCABULARY**
+
+This is often referred to as a *sandwich estimator* because the $\mathbf{X}^{\intercal}\boldsymbol{\Sigma}\mathbf{X}$ is "sandwiched" between two occurrences of $(\mathbf{X}^{\intercal}\mathbf{X})^{-1}$.
+:::
+
+Note that under the standard regression assumptions (including homoskedasticity), $\boldsymbol{\Sigma} = \sigma^2_{\epsilon}\mathbf{I}$, and this whole expression can be simplified to the matrix expression of the variance--covariance matrix for the coefficients under the OLS model.:
+
+$$
+\begin{split}
+V(\mathbf{b}) &= (\mathbf{X}^{\intercal}\mathbf{X})^{-1}\mathbf{X}^{\intercal}\sigma^2_{\epsilon}\mathbf{IX} (\mathbf{X}^{\intercal}\mathbf{X})^{-1} \\[2ex]
+&= \sigma^2_{\epsilon}(\mathbf{X}^{\intercal}\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{IX} (\mathbf{X}^{\intercal}\mathbf{X})^{-1} \\[2ex]
+&= \sigma^2_{\epsilon}(\mathbf{X}^{\intercal}\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{X} (\mathbf{X}^{\intercal}\mathbf{X})^{-1} \\[2ex]
+&= \sigma^2_{\epsilon} \mathbf{I} (\mathbf{X}^{\intercal}\mathbf{X})^{-1} \\[2ex]
+&= \sigma^2_{\epsilon} (\mathbf{X}^{\intercal}\mathbf{X})^{-1}
+\end{split}
+$$
+
+If the errors are, however, heteroskedastic, then we need to use the heteroskedastic variance--covariance of the residuals,
+
+$$
+\boldsymbol{\Sigma} =  \begin{bmatrix}\sigma^2_{1} & 0 & 0 & \ldots & 0 \\ 0 & \sigma^2_{2} & 0 & \ldots & 0\\ 0 & 0 & \sigma^2_{3} & \ldots & 0\\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \ldots & \sigma^2_{n}\end{bmatrix},
+$$
+
+One of the computational formulas for variance of a random variable *X*, using the rules of expectation  is:
+
+$$
+\sigma^2_X = \mathbb{E}\bigg(\big[X_i - \mathbb{E}(X)\big]^2\bigg)
+$$
+
+This means for the *i*th error variance, $\sigma^2_i$, can be computed as
+
+$$
+\sigma^2_{i} = \mathbb{E}\bigg(\big[\epsilon_i - \mathbb{E}(\epsilon)\big]^2\bigg)
+$$
+
+Which, since $\mathbb{E}(\epsilon)=0$ simplifies to
+
+$$
+\sigma^2_{i} = \mathbb{E}\big(\epsilon_i^2\big)
+$$
+
+This suggests that we can estimate $\boldsymbol{\Sigma}$ as:
+
+$$
+\hat{\boldsymbol{\Sigma}} =  \begin{bmatrix}\epsilon^2_{1} & 0 & 0 & \ldots & 0 \\ 0 & \epsilon^2_{2} & 0 & \ldots & 0\\ 0 & 0 & \epsilon^2_{3} & \ldots & 0\\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \ldots & \epsilon^2_{n}\end{bmatrix},
+$$
+
+In other words, the estimated variance--covariance matrix of the residuals under heteroskedasticity is a diagonal matrix with elements that are the squared residuals from the OLS model.
+
+
+Going back to our SLID example, we can compute the adjusted variance--covariance matrix of the coefficients by using the sandwich estimation method.
+
+```{r}
+# Fit OLS model
+lm.ols = lm(wages ~ 1 + age + education + male, data = slid)
+
+# Design matrix
+X = model.matrix(lm.1)
+
+# Create Sigma matrix
+e_squared = augment(lm.1)$.resid ^ 2
+Sigma = e_squared * diag(3997)
+
+# Variance-covariance matrix for B
+V_b_adj = solve(t(X) %*% X) %*% t(X) %*% Sigma %*% X %*% solve(t(X) %*% X)
+
+# Compute SEs
+sqrt(diag(V_b_adj))
+```
+
+
+The SEs we produce from this method are typically referred to as *Huber-White standard errors* because they were introduced in a paper by @Huber:1967 and their some of their statistical properties were proved in a paper by @White:1980.
+
+<br />
+
+
+### Modifying the Huber-White Estimates
+
+Simulation studies by @Long:2000 suggest a slight modification to the Huber-White estimates; by using a slightly different $\boldsymbol\Sigma$ matrix:
+
+$$
+\hat{\boldsymbol{\Sigma}} =  \begin{bmatrix}\frac{\epsilon^2_{1}}{(1-h_{11})^2} & 0 & 0 & \ldots & 0 \\ 0 & \frac{\epsilon^2_{2}}{(1-h_{22})^2} & 0 & \ldots & 0\\ 0 & 0 & \frac{\epsilon^2_{3}}{(1-h_{33})^2} & \ldots & 0\\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & \ldots & \frac{\epsilon^2_{n}}{(1-h_{nn})^2}\end{bmatrix},
+$$
+
+where, $h_{ii}$ is the *i*th diagonal element from the **H** matrix.
+
+
+We can compute this modification by adjusting the `e_squared` value in the R syntax as:
+
+```{r}
+# Sigma matrix
+e_squared = augment(lm.1)$.resid ^ 2  / ((1 - augment(lm.1)$.hat) ^ 2)
+Sigma = e_squared * diag(3997)
+
+# Variance-covariance matrix for B
+V_b_hw_mod = solve(t(X) %*% X) %*% t(X) %*% Sigma %*% X %*% solve(t(X) %*% X)
+
+# Compute adjusted SEs
+sqrt(diag(V_b_hw_mod))
+```
+
+We could use these SEs to compute the *t*-values, associated *p*-values, and confidence intervals for each of the coefficients.
+
+The three sets of SEs are:
+
+```{r}
+#| label: tbl-sandwich
+#| tbl-cap: "OLS, Huber-White, and Modified Huber-White standard errors. "
+#| echo: false
+tab_01 = data.frame(
+  Coefficient = c("Intercept", "Age", "Education", "Age x Education"),
+  OLS = tidy(lm.1)$std.error,
+  Sandwich = sqrt(diag(V_b_adj)),
+  Modified = sqrt(diag(V_b_hw_mod))
+)
+
+kable(
+  tab_01,
+  col.names = c("Coefficient", "OLS", "Huber-White", "Modified Huber-White"),
+  row.names = FALSE,
+  caption = "OLS, Huber-White, and Modified Huber-White standard errors."
+  ) |>
+  add_header_above(c(" " = 1, "SE" = 3), align = "c")
+```
+
+In these data, the modified Huber-White adjusted SEs are quite similar to the SEs we obtained from OLS, despite the heteroskedasticity observed in the residuals. One advantage of this method is that we do not have to have a preconceived notion of the underlying pattern of variation like we do to use WLS estimation. (We can estimate the pattern using the multi-step approach introduced earlier, but this assumes that the method of estimation correctly mimics the pattern of variation.) If, however, we can identify the pattern of variation, then WLS estimation will produce more efficient (smaller) standard errors than sandwich estimation.
+
+<br />
+
+
