@@ -1,0 +1,598 @@
+---
+title: "Automated Methods for Model Selection"
+date: today
+---
+
+```{r}
+#| echo: false
+source("../assets/notes-setup.R")
+```
+
+---
+
+In a previous activity, we examined predictors of average life expectancy in a state, using data from **states-2019.csv**. In this set of notes, we will examine several "vintage" methods for model selection. These methods are often used when researchers have no *a priori* hypotheses about the data.
+
+
+```{r}
+# Load libraries
+library(modelr)
+library(patchwork)
+library(tidyverse)
+library(tidymodels) # Loads broom, rsample, parsnip, recipes, workflow, tune, yardstick, and dials
+
+# Import and view data
+usa = read_csv("https://raw.githubusercontent.com/zief0002/symmetrical-fiesta/main/data/states-2019.csv")
+
+# View data
+usa
+```
+
+In all of our previous courses and notes, predictors have been selected *a priori*, based on substantive literature and theory. Subsequently, most of our analytic work has focused on:
+
+- Identifying functional form of predictors; and
+- Examining and fixing problems with assumptions.
+
+When theory does not specify the predictor set, variable (model) selection becomes an important analytical problem! To consider this, let's examine the how we might make decisions about potential predictors:
+
+1. When we evaluate models (or predictors within a model) we do so by examining some **criterion/metric of the model's/predictor's performance**. For example, one criterion we use is the *p*-value. Another criterion we use at the model-level is the $R^2$ value.
+2. Once we have identified the criterion/metric to measure performance, we then need to determine how to select a model using this metric. For example, with a *p*-value, we might retain a predictor in the model if the *p*-value is less than some *a priori* defined threshold (e.g., $p < .05$). The threshold level will be diﬀerent for exploratory and confirmatory analyses.
+3. A third thing that we need to consider is the model-building strategy that we are going to employ as we use our metric to select a model(s). Will we add one predictor at a time into the model? In which order? Maybe we will include all the predictors and drop those that don’t meet our criteria. Should we drop them all at once or one-at-a-time? Once we drop them should we reconsider including them at other stages of the model-building process. When should we check collinearity? Assumptions?
+
+<br />
+
+
+## Purpose of the Model and Analytic Goal
+
+Note that there are many decisions to be made in this process. One thing that can help guide some of these decisions is the purpose for modeling and the related analytic goal. For example:
+
+- **Description**
+  + Purpose of the model is to describe the data, or to understand a complex system.
+  + Analytic goal could be to choose the smallest number of predictors that account for a substantial amount of variation in the outcome.
+  + Note that this analytic goal may hve competing requirements since explaining more variation in the outcome generally requires more predictors
+
+- **Inference/Prediction**
+  + Purpose of the model is to predict the outcome/mean outcome for new cases or make inferences about the eﬀects of predictors
+  + Here the analytic goal is prediction/inferential accuracy.
+  + Because of this, performance in our sample is not as important as performance in future (out-of-sample) cases
+
+<br />
+
+
+### Model Evaluation Criteria
+
+The model's purpose determines how we will measure and evaluate "model success". Each purpose points to a diﬀerent criteria to use in the model evaluation process. 
+
+There are several criteria that have been proposed to evaluate model performance when the **purpose is description**.
+
+- **Sum of Squared Residuals:** $\mathrm{SSE} = \sum(Y_i - \hat{Y}_i)^2$
+- **Residual Mean Square:** $\mathrm{RMS} = \frac{\mathrm{SSE}}{\mathrm{df}_{\mathrm{Residual}}}$
+
+When using criteria that measure the residual error (SSE, RMS), we want to select a model that minimizes these values.
+
+- $\mathbf{R}^2$: $R^2 = \frac{\mathrm{SST}-\mathrm{SSE}}{\mathrm{SST}}$
+- **Adjusted** $\mathbf{R}^2$: $R^2_{Adj} = \frac{\mathrm{SST}-\mathrm{SSE}}{\mathrm{SST}} \times \frac{\mathrm{df}_{\mathrm{Total}}}{\mathrm{df}_{\mathrm{Residual}}}$
+
+When using an $R^2$ value to evaluate model performance, we want to select a model that maximizes these values. The adjusted $R^2$ value penalizes the $R^2$ value for model complexity, so when the number of predictors varies across the models, this is a better criterion.
+
+
+The criteria that have been proposed to evaluate model performance when the **purpose is prediction/inference** focus on measuring out-of-sample performance. (Note that in each of the following formulae, *k* is the total number of parameters being estimated, including the residual variance.)
+
+- **_t_-value/_p_-value**
+
+Note that these criteria are at the predictor-level; not the model-level. Using the maximum *p*-value or minimum *t*-value can make this a model-level metric.
+
+- **Mallow's Cp:** $C_p=\frac{\mathrm{SSE}}{\hat{\sigma^2_{\mathrm{Residual (Full)}}}}+2k-n$
+
+Mallow's Cp is an estimate of the average mean squared error of prediction. The Cp value should be similar to the number of predictors in the model.
+
+- **AIC:** $\mathrm{AIC} = n \times \ln(\frac{\mathrm{SSE}}{n}) + 2k$
+- **Corrected AIC:** $\mathrm{AICc} = \mathrm{AIC} + \frac{2(k+2)(k+3)}{n-k-3}$
+
+AIC has a penalty for model complexity. It must be computed on the same set of observations; no missing data. Corrected AIC has been found to perform better than AIC.
+
+- **BIC:** $\mathrm{BIC} = n \times \ln(\frac{\mathrm{SSE}}{n}) + k \bigg(\ln(n)\bigg)$
+
+BIC has a larger penalty term than AIC, which is based on sample size and model complexity. It performs best when the "true" model is among the candidate models.
+
+<br />
+
+
+## Back to Example
+
+Our modeling goal is to explore the predictors of life expectancy. Because we have no *a priori* hypotheses about which predictors should be included in the model nor about the importance of these predictors, one method is to put **all of the predictors in the model** immediately. Before we do this, we will create a data frame of the `usa` data that will be useful in our modeling by removing state name---this leaves only the outcome and predictors in the data.
+
+
+
+```{r}
+# Create data frame that includes all rows/columns except the state names
+usa2 = usa |>
+  select(-state)
+
+# View data
+head(usa2)
+
+# Use all variables as predictors
+lm.all = lm(life_expectancy ~ ., data = usa2)
+
+# Examine output
+tidy(lm.all)
+```
+
+Based on the coefficient-level output, we find that:
+
+- Population, area, and income are positively related to life expectancy;
+- Illiteracy rate, murder rate, days with a temperature below freezing, and graduation rate are negatively related to life expectancy;
+
+Also,
+
+- Only population, income, and maybe illiteracy rate are statistically significant at the .05-level.
+
+
+<br />
+
+
+### Computing Model Evaluation Criteria
+
+Here we compute the different model evaluation criteria as an example. In practice, you would decide on the criterion you will use prior to any analysis being undertaken.
+
+
+```{r}
+# Descriptive: Compute SSE and RMS
+anova(lm.all)
+
+SSE = 31.668
+RMS = 0.7197
+
+# Descriptive: Compute R2 and adj. R2
+glance(lm.all)
+
+R2 = 0.379
+AdjR2 = 0.280
+
+
+# Assign values for k and n
+k = 8 
+n = 52
+
+# Inference: Compute maximum t-value
+max(tidy(lm.all)$statistic)
+
+# Inference: Compute minimum p-value
+min(tidy(lm.all)$p.value)
+
+# Inference: Compute Mallow's Cp
+SSE / RMS + 2 * k - n
+
+# Inference: AIC
+aic_mod = n * log(SSE / n) + 2 * k
+aic_mod
+
+# Inference: AICc
+aic_mod + (2 * (k + 2) * (k + 3)) / (n - k - 3)
+
+# Inference: BIC
+n * log(SSE / n) + k * log(n)
+```
+
+Another consideration is the usefulness of these criteria. For example the maximum *t*-value, minimum *p*-value, SSE, RMS, $R^2$, and adjusted $R^2$ values are useful for both summarizing a single model and for comparing models. Whereas, Mallow's Cp, and the information criteria metrics are only useful for comparing models; not for summarizing a single model.
+
+<br />
+
+
+## Model Building Strategy
+
+Once you determine the criteria/metric you will use to measure the performance of each model, you need to outline your model building strategy. Three common strategies for model building are: forward selection, backward elimination, and stepwise. Note that again, we assume that there is no *a priori* hypotheses about the importance of the predictors. 
+
+Before we begin, we will standardize all the variables in the analysis.
+
+
+```{r}
+# Create standardized variables after removing state names
+z_usa = usa |>
+  select(-state) |>
+  scale(center = TRUE, scale = TRUE) |>
+  data.frame()
+
+# View data
+head(z_usa)
+```
+
+
+<br />
+
+
+### Forward Selection
+
+- **Step 1:** We fit each of the one-predictor models and measure the performance of each model using the criteria/metric chosen. The predictor from the model that has the best performance is retained.
+- **Step 2:** We then fit each of the two-predictor models that can be fitted with the predictor retained in Step 1. The predictors from the model that has the best performance are retained.
+
+We continue this process until we have either (a) fitted a model with all the predictors, or (b) hit some stopping/selection criteria that we have identified (e.g., stop once one of the *p*-values is greater than 0.05). 
+
+:::fyi
+**IMPORTANT**
+
+Once a predictor is retained in forward selection, it is always included in all later stages.
+:::
+
+
+In our example, we will employ forward selection to adopt a model using the following performance metric and selection criteria:
+
+- **Metric of Performance:** Select the predictor with the highest *t*-value (absolute value).
+- **Selection Criterion:** All *t*-values for predictors in the model need to be greater than 1.
+
+```{r}
+# Step 1: Fit all one-predictor models
+# tidy(lm(life_expectancy ~ -1 + population, data = z_usa)) #t = 1.63
+# tidy(lm(life_expectancy ~ -1 + income,     data = z_usa)) #t = 4.09
+# tidy(lm(life_expectancy ~ -1 + illiteracy, data = z_usa)) #t = -0.45
+# tidy(lm(life_expectancy ~ -1 + murder,     data = z_usa)) #t = -2.93
+# tidy(lm(life_expectancy ~ -1 + hs_grad,    data = z_usa)) #t = 2.47
+# tidy(lm(life_expectancy ~ -1 + frost,      data = z_usa)) #t = 1.19
+# tidy(lm(life_expectancy ~ -1 + area,       data = z_usa)) #t = 0.38
+```
+
+The best one-predictor model under this criterion includes income.
+
+```{r}
+# Step 2: Fit all two-predictor models that include income
+# tidy(lm(life_expectancy ~ -1 + income + population, data = z_usa)) #t = 1.71
+# tidy(lm(life_expectancy ~ -1 + income + illiteracy, data = z_usa)) #t = -0.58
+# tidy(lm(life_expectancy ~ -1 + income + murder,     data = z_usa)) #t = -1.37
+# tidy(lm(life_expectancy ~ -1 + income + hs_grad,    data = z_usa)) #t = 0.46
+# tidy(lm(life_expectancy ~ -1 + income + frost,      data = z_usa)) #t = 0.03
+# tidy(lm(life_expectancy ~ -1 + income + area,       data = z_usa)) #t = 0.51
+```
+
+The best two-predictor model under this criterion includes income and population.
+
+```{r}
+# Step 3: Fit all three-predictor models that include income and population
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy, data = z_usa)) #t = -2.13
+# tidy(lm(life_expectancy ~ -1 + income + population + murder,     data = z_usa)) #t = -1.54
+# tidy(lm(life_expectancy ~ -1 + income + population + hs_grad,    data = z_usa)) #t = 1.50
+# tidy(lm(life_expectancy ~ -1 + income + population + frost,      data = z_usa)) #t = 0.90
+# tidy(lm(life_expectancy ~ -1 + income + population + area,       data = z_usa)) #t = 0.25
+```
+
+The best three-predictor model under this criterion includes income, population, and illiteracy.
+
+
+```{r}
+# Step 4: Fit all four-predictor models that include income, population, and illiteracy
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + murder,  data = z_usa)) #t = -1.08
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + hs_grad, data = z_usa)) #t = 0.45
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + frost,   data = z_usa)) #t = -0.35
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + area,    data = z_usa)) #t = 0.13
+```
+
+The best four-predictor model under this criterion includes income, population, illiteracy, and murder rate. Continue this process to determine the best four-, five-, six- and seven-predictor models
+
+```{r}
+# Step 5: Fit all five-predictor models that include income, population, illiteracy, and murder_rate
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + murder + hs_grad, data = z_usa)) #t = -0.31
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + murder + frost,   data = z_usa)) #t = -0.77
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + murder + area,    data = z_usa)) #t = 0.21
+
+# Step 6: Fit all six-predictor models that include income, population, illiteracy, murder_rate, and frost
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + murder + frost + hs_grad, data = z_usa)) #t = -0.12
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + murder + frost + area,    data = z_usa)) #t = 0.62
+
+# Step 7: Fit all seven-predictor models that include income, population, illiteracy, murder_rate, frost, and area
+# tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + murder + frost + area + hs_grad, data = z_usa)) #t = -0.27
+```
+
+At each stage we could also check to see that all the predictors in the selected model meet our selection criterion that the *t*-value for all predictors is greater than 1. With this criteria we could have stopped after Stage 4 since not all of the *t*-values of the best model in Stage 5 were above 1. Based on the forward selection process and the criteria we adopted, we would adopt the best performing model from Stage 4.
+
+
+```{r}
+# Model adopted from forward selection
+tidy(lm(life_expectancy ~ -1 + income + population + illiteracy + murder,  data = z_usa))
+```
+
+
+$$
+\begin{split}
+\widehat{\mathrm{Life~Expectancy}_i} = &0.42(\mathrm{Income}_i) + 0.38(\mathrm{Population}_i) - 0.27(\mathrm{Illiteracy~Rate}_i)\\ 
+&- 0.15(\mathrm{Murder~Rate}_i)
+\end{split}
+$$
+
+where all the variables in the equation are standardized. Note that the *p*-values are irrelevant as that did not factor into our selection criteria. (In fact, I would not even report them if I was using this selection criterion.)
+
+<br />
+
+
+### Backward Elimination
+
+- **Step 1:** We begin with a model that includes all of the predictors.
+- **Step 2:** We then fit each of the models that include all of the predictors except one, and measure the performance. The predictor that decreases the performance the least is removed from the model.
+
+We continue this process, at each stage removing the predictor that has the least impact on performance until we get down to an
+intercept-only model.
+
+:::fyi
+**IMPORTANT**
+
+Once a predictor is removed, it is removed in all later stages.
+:::
+
+
+In our example, we will employ backward elimination to adopt a model using the following performance metric and selection criteria:
+
+- **Metric of Performance:** Select the model with the highest $R^2$ value.
+- **Selection Criterion:** The total $R^2$ value needs to be greater than 0.3.
+
+```{r}
+# Step 0: Fit model with all predictors
+# glance(lm(life_expectancy ~ . - 1, data = z_usa))$r.squared #R2 = 0.379
+
+# Step 1: Fit all models with one predictor removed
+# glance(lm(life_expectancy ~ . -1 - population, data = z_usa))$r.squared #R2 = 0.319
+# glance(lm(life_expectancy ~ . -1 - income,     data = z_usa))$r.squared #R2 = 0.264
+# glance(lm(life_expectancy ~ . -1 - illiteracy, data = z_usa))$r.squared #R2 = 0.328
+# glance(lm(life_expectancy ~ . -1 - murder,     data = z_usa))$r.squared #R2 = 0.357
+# glance(lm(life_expectancy ~ . -1 - hs_grad,    data = z_usa))$r.squared #R2 = 0.378
+# glance(lm(life_expectancy ~ . -1 - frost,      data = z_usa))$r.squared #R2 = 0.367
+# glance(lm(life_expectancy ~ . -1 - area,       data = z_usa))$r.squared #R2 = 0.373
+```
+
+After Step 1, the model with the highest $R^2$ removes high school graduation rate. Since the $R^2$ value is above our threshold of 0.3, we continue to Step 2.
+
+
+```{r}
+# Step 2: Fit all models with hs_grad and one other predictor removed
+# glance(lm(life_expectancy ~ . -1 - hs_grad - population, data = z_usa))$r.squared #R2 = 0.309
+# glance(lm(life_expectancy ~ . -1 - hs_grad - income,     data = z_usa))$r.squared #R2 = 0.232
+# glance(lm(life_expectancy ~ . -1 - hs_grad - illiteracy, data = z_usa))$r.squared #R2 = 0.324
+# glance(lm(life_expectancy ~ . -1 - hs_grad - murder,     data = z_usa))$r.squared #R2 = 0.352
+# glance(lm(life_expectancy ~ . -1 - hs_grad - frost,      data = z_usa))$r.squared #R2 = 0.366
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area,       data = z_usa))$r.squared #R2 = 0.373
+```
+
+After Step 2, the model with the highest $R^2$ removes high school graduation rate and area. Since the $R^2$ value is above our threshold of 0.3, we continue to Step 3. We will continue this process to determine the best four-, three-, two- and one-predictor models. At each stage we should also check to see that the selected model does not decrease the criteria beyond our pre-identified threshold of 0.3.
+
+```{r}
+# Step 3: Fit all models with hs_grad, area, and one other predictor removed
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - population, data = z_usa))$r.squared #R2 = 0.289
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - income,     data = z_usa))$r.squared #R2 = 0.232
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - illiteracy, data = z_usa))$r.squared #R2 = 0.323
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - murder,     data = z_usa))$r.squared #R2 = 0.351
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - frost,      data = z_usa))$r.squared #R2 = 0.365
+
+# Step 4: Fit all models with hs_grad, area, frost, and one other predictor removed
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - frost - population, data = z_usa))$r.squared #R2 = 0.276
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - frost - income,     data = z_usa))$r.squared #R2 = 0.231
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - frost - illiteracy, data = z_usa))$r.squared #R2 = 0.322
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - frost - murder,     data = z_usa))$r.squared #R2 = 0.350
+
+# Step 5: Fit all models with hs_grad, area, frost, murder, and one other predictor removed
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - frost - murder - population, data = z_usa))$r.squared #R2 = 0.253
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - frost - murder - income,     data = z_usa))$r.squared #R2 = 0.112
+# glance(lm(life_expectancy ~ . -1 - hs_grad - area - frost - murder - illiteracy, data = z_usa))$r.squared #R2 = 0.289
+```
+
+
+
+With this criteria we stop after Step 4 since the $R^2$ value of the best model in Step 5 has an $R^2$ value that is less
+than 0.3.
+
+```{r}
+# Adopted backward elimination model
+tidy(lm(life_expectancy ~ . -1 - hs_grad - area - frost - murder, data = z_usa))
+```
+
+
+$$
+\widehat{\mathrm{Life~Expectancy}_i} = 0.39(\mathrm{Population}_i) + 0.92(\mathrm{Income}_i) - 0.32(\mathrm{Illiteracy~Rate}_i)
+$$
+
+where all the variables in the equation are standardized. Again, the *p*-values are irrelevant as that did not factor into our selection criteria and should not be reported.
+
+<br />
+
+
+### Stepwise Regression
+
+Stepwise regression is based on backward elimination (starting with all predictors and eliminating them one at a time), but the predictors that were removed in earlier steps can be considered for re-entry into the model at later stages. Using the following criteria:
+
+- **Metric of Performance:** Select the predictor with the highest *p*-value for removal.
+- **Selection Criterion:** Predictors with *p*-values greater than 0.3 are candidates for elimination; and those with *p*-values less than 0.1 are candidates for re-entry.
+
+
+Based on the results of this analysis (not shown), the adopted model is:
+
+
+$$
+\widehat{\mathrm{Life~Expectancy}_i} = 0.39(\mathrm{Population}_i) + 0.49(\mathrm{Income}_i) - 0.31(\mathrm{Illiteracy~Rate}_i)
+$$
+
+
+<br />
+
+
+## Using R for Automated Model Building
+
+Functions from the `{olsrr}` package perform automated forward selection, backward elimination, and stepwise regression. The evaluation metrics that these functions use include the *p*-value, $R^2$, Adjusted $R^2$, AIC, BIC, and SBIC. All of the functions require a `lm()` object that includes all possible predictors.
+
+While we can't mimic our forward selection from earlier (the *t*-value is not a metric we can use with this package), we demonstrate forward selction using the AIC. Variables are added one-at-a-time based on their AIC values. The process terminates when either all the variables have been added or the addition of another variable increases the AIC value.
+
+
+```{r}
+library(olsrr)
+
+# Forward selection using AIC
+fs_output = ols_step_forward_aic(lm.all, details = TRUE)
+
+# View results from adopted model
+fs_output
+```
+
+
+We can also plot the AIC values versus each step of the selction process.
+
+
+```{r}
+#| label: fig-fs
+#| fig-cap: "Plot of the AIC versus each step in the forward selection process."
+#| fig-alt: "Plot of the AIC versus each step in the forward selection process."
+plot(fs_output)
+```
+
+Backward elimination and stepwise regression operate in a similar manner. For backward elimination the function using AIC would be `ols_step_backward_aic()`. For stepwise regression the function would be `ols_step_both_aic()`.
+
+
+
+<br />
+
+
+## All Subsets Regression
+
+All subsets regression fits **all possible _k_-predictor models**. The number of *k*-predictor models is:
+
+$$
+\mathrm{Number~of~Models} = 2^p - 1
+$$
+
+where *p* is the number of predictors in the candidate set. 
+
+The `ols_step_all_possible()` function from the `{olsrr}` package can be used to exhaustively fit a set of models. The function takes an `lm()` object
+that includes all potential predictors. 
+
+```{r}
+#| eval: false
+
+# Fit all subsets of predictors
+all_output = ols_step_all_possible(lm.all)
+
+# Output
+all_output
+```
+
+
+```{r}
+#| echo: false
+
+# Fit all subsets of predictors
+all_output = ols_step_all_possible(lm.all)
+
+# Output
+all_output$result |>
+  head(20)
+```
+
+Here, although  there are $2^7-1 = 127$ different models included in the output, we only show the first 20. The actual output is in an object called `result`. (Calling the `names()` function on the `all_output` object returns the associated objects in the output.) We can operate on this to sort/arrange the models based on any of the included metrics, or to add new metrics.
+
+```{r}
+# Add AICc to results
+models = all_output$result |>
+  mutate(
+    aic_c = aic + (2 * (n + 2) * (n + 3)) / (nrow(z_usa) - n - 3)
+    )
+
+
+# Order from smallest to largest AICc metric
+# Only show the best 20 models
+models |>
+  arrange(aic_c) |>
+  head(20)
+```
+
+
+The model with the smallest AICc includes the predictors population, income, and illiteracy rate. However, there are several models that have an AICc value within 4 of the minimum AICc. All of these models are also plausible given the data and candidate set of 127 models.
+
+```{r}
+# Get models within 4 of minimum AICc
+models |>
+  select(mindex, n, predictors, aic_c) |>
+  filter(aic_c - min(aic_c) < 4) |>
+  arrange(aic_c)
+```
+
+You could also examine the best 1-predictor, 2-predictor, 3-predictor, etc. models.
+
+```{r}
+# Get best k-predictor models
+models |>
+  group_by(n) |>
+  filter(aic_c == min(aic_c)) |>
+  ungroup() |>
+  select(mindex, n, predictors, aic_c) |>
+  arrange(aic_c)
+```
+
+It can be useful to examine the predictors from the best models. (Here I do that in a plot, but it could also be done in a table.) This can help identify substantively important predictors.
+
+```{r}
+#| label: fig-plausible
+#| fig-cap: "Fourteen plausible models and their predictors based on their AICc values."
+#| fig-alt: "Fourteen plausible models and their predictors based on their AICc values."
+
+# Get models within 4 of minimum AICc
+plausible = models |>
+  select(mindex, n, predictors, aic_c) |>
+  filter(aic_c - min(aic_c) < 4) |>
+  arrange(aic_c)
+
+# Load library for labeling
+library(ggrepel)
+
+# Plot the models
+ggplot(data = plausible, aes(x = as.numeric(rownames(plausible)), y = aic_c)) +
+  geom_line(group = 1) +
+  geom_point() +
+  geom_label_repel(aes(label = predictors), size = 3) +
+  theme_bw() +
+  scale_x_continuous(name = "Ten Best Models", breaks = 1:14) +
+  ylab("AICc")
+```
+
+The models with the lowest AICc values all seem to include population and income. Many also include illiteracy rate.
+
+
+
+<br />
+
+
+## 99 Problems...
+
+Automated methods of model selection has a host of critics and issues. In simulation studies, even when the true set of predictors are included in the subset of regression models, automated strategies may not identify these true predictors in the best models [@Miller:2002]. The essential problems with automated selection methods have been summarized by @Harrell:2001:
+
+- $R^2$ values are biased high;
+- The *F*-statistics are not *F*-distributed;
+- The standard errors of the parameter estimates are too small;
+    + Consequently, the confidence intervals around the parameter estimates are too narrow.
+- *p*-values are too low, due to multiple comparisons, and are diﬃcult to correct;
+- Parameter estimates are biased away from 0; and
+- Collinearity problems are exacerbated.
+
+In sum, the parameter estimates are likely to be too far away from zero; the variance estimates for those parameter estimates are not correct; which implies that the confidence intervals and hypothesis tests will be wrong; and there are no reasonable ways of correcting these problems! In general the evidence around using automated selection methods is that these methods are subpar. If you need to use these methods backward elimination seems to be the best method to use. (Stepwise regression consistently performs the worst.) Also, information criteria (AIC, BIC) seems to be the best criterion when using these methods.
+
+:::fyi
+**SUMMATION OF AUTOMATED METHODS**
+
+@Flom:2018 writes, "Most devastatingly, it allows the analyst not to think. Put in another way, for a data analyst to use stepwise methods is equivalent to telling his or her boss that his or her salary should be cut."
+:::
+
+
+<br />
+
+
+## Some Considerations in Model Selection
+
+Diﬀerent model strategies, metrics of model performance, and criteria for model selection lead to diﬀerent "final" models. 
+
+Many statistical programs have functionality that can automate these fitting strategies. Before automating the selection process, it is important to understand the purpose of your model (is it to describe the data? make predictions? inference?). This often guides the choice of performance metrics and model building strategy.
+
+Although these packages can select a model based on some performance metric, there are several problems that automation does not solve:
+
+- It does not address the functional form of the predictors.
+- It does not address interactions.
+- It does not address outliers.
+- It does not address collinearity problems.
+
+Most software will require that you deal with these problems sequentially; first selecting the variables for the model and then determining their functional form, interactons, etc.
+
+
+
+
+

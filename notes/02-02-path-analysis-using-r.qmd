@@ -21,7 +21,7 @@ library(broom)
 library(lavaan)
 
 # Import data
-keith = read_csv("https://raw.githubusercontent.com/zief0002/redesigned-adventure/main/data/path-model-achievement.csv")
+keith = read_csv("https://raw.githubusercontent.com/zief0002/symmetrical-fiesta/main/data/path-model-achievement.csv")
 keith
 ```
 

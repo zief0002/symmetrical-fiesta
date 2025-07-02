@@ -225,7 +225,6 @@ figure.quarto-float-tbl figcaption.quarto-float-caption-top {
   border-color: black;
   border-width: 1px;
   font-family: 'Atkinson Hyperlegible', serif;
-  font-size: 12px;
   font-weight: normal;
 }
 
@@ -238,7 +237,6 @@ figure.quarto-float-tbl figcaption.quarto-float-caption-top {
   border-left: 0;
   border-right: 0;
   font-family: 'Atkinson Hyperlegible', serif;
-  font-size: 12px;
 }
 
 .table caption{
@@ -247,14 +245,12 @@ figure.quarto-float-tbl figcaption.quarto-float-caption-top {
 
 .gt_table, .gt_col_headings header {
   font-family: 'Atkinson Hyperlegible', serif;
-  font-size: 12px;
 }
 
 /** Format and remove borders within the table body **/
 .table tbody tr td {
   border: none;
   font-family: 'Atkinson Hyperlegible', serif;
-  font-size: 12px;
 }
 
 

@@ -22,7 +22,7 @@ library(broom)
 library(patchwork)
 
 # Import data
-contraception = read_csv("https://github.com/zief0002/epsy-8264/raw/master/data/contraception.csv")
+contraception = read_csv("https://raw.githubusercontent.com/zief0002/symmetrical-fiesta/main/data/contraception.csv")
 
 # View data
 contraception

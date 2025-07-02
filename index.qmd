@@ -12,6 +12,9 @@ date: today
 <nav aria-label="materials">
 - [Syllabus](https://docs.google.com/document/d/1EgJKuDkiIARgaHWutzh97DvgT9mlOwIwjMhZks1cngA/edit?usp=sharing)
 - [Textbook: Matrix Algebra for Educational Scientists](https://zief0002.github.io/matrix-algebra/)
+- [CSV Data Files]()
+- [Data Dictionaries](https://docs.google.com/document/d/1u-nQvGTRs-kL6OA4LxYYZyPytV_98v9vhmDUG7Xk0dw/edit?usp=drive_link)
+- [R Scripts]()
 </nav>
 
 <br />
@@ -20,13 +23,13 @@ date: today
 ## Assignments
 
 <nav aria-label="assignments">
-- [Assignment 1]()
-- [Assignment 2]()
-- [Assignment 3]()
-- [Assignment 4]()
-- [Assignment 5]()
-- [Assignment 6]()
-- [Assignment 7]()
+- [Assignment 1: Matrix Algebra for Linear Regression](https://docs.google.com/document/d/1ZXfV635WEZ95Y1nICSLlMT_i5k1AyrrChE_pRQMKwGU/edit?usp=sharing)
+- [Assignment 2: Path Analysis](https://docs.google.com/document/d/11EzuqiQZMmFzzonJ70YLru3qC7Wh80iCL7-JUmasdPA/edit?usp=sharing)
+<!-- - [~~Assignment 3: Regression Diagnostics~~]() -->
+- [Assignment 3: Using WLS to Model Data with Outliers](https://docs.google.com/document/d/1RDBLk8hB97CuG-hdj3I46Nwc2bQgeQSyI1dCIVTByl8/edit?usp=sharing)
+- [Assignment 4: Collinearity and Dimension Reduction](https://docs.google.com/document/d/1Y1Bn3ynGod8jjQbMSCyLA8ypgOVKO4s41eExpDVYDX4/edit?usp=sharing)
+- [Assignment 5: Ridge Regression](https://docs.google.com/document/d/1ZCRsM3VJPf_Ur5O52XVMAcPKIarqh99woxY2TuWpGBY/edit?usp=sharing)
+- [Assignment 6: Cross Validation](https://docs.google.com/document/d/1qi2w9hGZ8kle4-Jri58cyjvR4-zdr8gob41nF2YtMNQ/edit?usp=sharing)
 </nav>
 
 <br />
@@ -52,7 +55,12 @@ date: today
   + [Weighted Least Squares (WLS) and Sandwich Estimation](notes/04-02-wls-and-sandwich-estimation.html)
 - **Diagnosing Collinearity and Tools for Dealing With It**
   + [Diagnosing Collinearity](notes/05-01-diagnosing-collinearity.html)
+  + [Principal Components Analysis via Spectral Decomposition](notes/05-02-pca-via-spectral-decomposition.html)
+  + [Principal Components Analysis via Singular Value Decomposition](notes/05-03-pca-via-svd.html)
+  + [Biased Estimation: Ridge Regression](notes/05-04-biased-estimation-ridge-regression.html)
 - **Model Selection**
+  + [Automated Methods for Model Selection](notes/06-01-automated-methods.html)
+  + [Cross-Validation Methods for Model Selection](notes/06-02-cross-validation.html)
 </nav>
 
 

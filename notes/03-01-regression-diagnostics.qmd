@@ -23,7 +23,7 @@ library(tidyverse)
 library(patchwork)
 
 # Import data
-contraception = read_csv(file = "https://raw.githubusercontent.com/zief0002/redesigned-adventure/main/data/contraception.csv")
+contraception = read_csv(file = "https://raw.githubusercontent.com/zief0002/symmetrical-fiesta/main/data/contraception.csv")
 
 # View data
 contraception
