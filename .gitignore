@@ -1,6 +1,13 @@
+
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 
 /.quarto/
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
