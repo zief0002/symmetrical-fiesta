@@ -67,9 +67,9 @@ date: today
 <br />
 
 
-## Worksheets
+<!-- ## Worksheets -->
 
-<nav aria-label="worksheets">
-- [Introduction to Matrix Algebra](worksheets/01-introduction-to-matrix-algebra.html)
-- [Model Selection](worksheets/02-model-selection.html)
-</nav>
+<!-- <nav aria-label="worksheets"> -->
+<!-- - [Introduction to Matrix Algebra](worksheets/01-introduction-to-matrix-algebra.html) -->
+<!-- - [Model Selection](worksheets/02-model-selection.html) -->
+<!-- </nav> -->
