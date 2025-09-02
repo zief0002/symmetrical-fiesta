@@ -13,7 +13,7 @@ date: today
 - [Syllabus](https://docs.google.com/document/d/1EgJKuDkiIARgaHWutzh97DvgT9mlOwIwjMhZks1cngA/edit?usp=sharing)
 - [Textbook: Matrix Algebra for Educational Scientists](https://zief0002.github.io/matrix-algebra/)
 - [CSV Data Files (ZIP File)](https://github.com/zief0002/symmetrical-fiesta/raw/refs/heads/main/files/data.zip)
-- [Data Dictionaries](https://docs.google.com/document/d/1u-nQvGTRs-kL6OA4LxYYZyPytV_98v9vhmDUG7Xk0dw/edit?usp=drive_link)
+- [Data Dictionaries](https://docs.google.com/document/d/1NIIplixa8yFg-eLWqD246v-bAE5KYX8-99yZXXLRfw4/edit?usp=sharing)
 - [R Scripts (ZIP File)](https://github.com/zief0002/symmetrical-fiesta/raw/refs/heads/main/files/R%20Scripts.zip)
 </nav>
 

@@ -2,7 +2,6 @@ project:
   type: website
   output-dir: docs
   preview:
-    port: 4200
     browser: true
   # resources:
     # - worksheets/ #Add worksheets directory to docs
