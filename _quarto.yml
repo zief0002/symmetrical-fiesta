@@ -3,9 +3,9 @@ project:
   output-dir: docs
   preview:
     browser: true
-  # resources:
-    # - worksheets/ #Add worksheets directory to docs
-    # - notes/ #Add notes directory to docs
+  resources:
+    - files/ #Add files directory to docs
+    - scripts/ #Add scripts directory to docs
 bibliography: "assets/epsy8264.bib"
 csl: 'assets/apa-single-spaced.csl'
 
