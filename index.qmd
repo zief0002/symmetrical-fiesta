@@ -38,6 +38,8 @@ date: today
 ## Notes
 
 <nav aria-label="notes">
+- **Regression Review**
+  + [Notes](files/01-regression-review.pdf) | [Data](https://raw.githubusercontent.com/zief0002/fluffy-ants/main/data/pew.csv) | [Dictionary](https://zief0002.github.io/fluffy-ants/codebooks/pew.html) | [R Script file](scripts/01-regression-review.R)
 - **Mathematical and Computational Foundations**
   + [Summation, Expectation, Variance, Covariance, and Correlation](notes/01-01-summation-expectation.html) 
   + [OLS Estimators and Their Properties](notes/01-02-ols-estimators-and-their-properties.html)
