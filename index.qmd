@@ -41,13 +41,14 @@ date: today
 - **Regression Review**
   + [Notes](files/01-regression-review.pdf) | [Data](https://raw.githubusercontent.com/zief0002/fluffy-ants/main/data/pew.csv) | [Dictionary](https://zief0002.github.io/fluffy-ants/codebooks/pew.html) | [R Script file](scripts/01-regression-review.R)
 - **Mathematical and Computational Foundations**
+  + [Introduction to Matrix Algebra Worksheet](worksheets/01-introduction-to-matrix-algebra.html)
   + [Summation, Expectation, Variance, Covariance, and Correlation](notes/01-01-summation-expectation.html) 
   + [OLS Estimators and Their Properties](notes/01-02-ols-estimators-and-their-properties.html)
   + [Assumptions for OLS Regression and the Gauss-Markov Theorem](notes/01-03-assumptions-and-gauss-markov-theorem.html)
   + [Statistical Inference for the Regression Model](notes/01-04-statistical-inference-for-the-regression-model.html) 
   + [A Regression Example in Practice](notes/01-05-regression-example.html) 
-  + [Regression From Summary Measures](notes/01-06-regression-from-summary-measures.html)
 - **Path Analysis**
+  + [Regression From Summary Measures](notes/01-06-regression-from-summary-measures.html)
   + [Introduction to Path Analysis](notes/02-01-intro-to-path-analysis.html)
   + [Path Analysis Using R](notes/02-02-path-analysis-using-r.html)
 - **Regression Diagnostics**
