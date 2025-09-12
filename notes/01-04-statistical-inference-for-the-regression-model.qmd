@@ -90,10 +90,10 @@ $$
 
 which is unit-normal distributed; $\mathcal{N}(0, 1)$. Note the denominator is the standard deviation of the sampling distribution for $b_j$.
 
-Unfortunately, in practice we do not know $\sigma_\epsilon$ to compute **V**. Instead, we substitute in the estimate for this value from our sample, the unbiased estimator $s_e$, where,
+Unfortunately, in practice we do not know $\sigma_\epsilon$ to compute **V**. Instead, we substitute in the estimate for this value from our sample, the unbiased estimator $s_e^2$, where,
 
 $$
-s_e = \frac{\mathbf{e}^\intercal\mathbf{e}}{n-k-1}
+s_e^2 = \frac{\mathbf{e}^\intercal\mathbf{e}}{n-k-1}
 $$
 
 where *n* is the sample size, *k* is the number of predictors in the model, and $n − k − 1$ is the residual degrees of freedom for the model. Thus, we get an estimate of the variance–covariance matrix using:

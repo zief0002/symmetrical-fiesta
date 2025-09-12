@@ -39,7 +39,7 @@ date: today
 
 <nav aria-label="notes">
 - **Regression Review**
-  + [Notes](files/01-regression-review.pdf) | [Data](https://raw.githubusercontent.com/zief0002/fluffy-ants/main/data/pew.csv) | [Dictionary](https://zief0002.github.io/fluffy-ants/codebooks/pew.html) | [R Script file](scripts/01-regression-review.R)
+  + [Notes](files/01-regression-review.pdf) | [Data](https://raw.githubusercontent.com/zief0002/fluffy-ants/main/data/pew.csv) | [Dictionary](https://zief0002.github.io/fluffy-ants/codebooks/pew.html) | [R Script file](scripts/00-01-regression-review.R)
 - **Mathematical and Computational Foundations**
   + [Introduction to Matrix Algebra Worksheet](worksheets/01-introduction-to-matrix-algebra.html)
   + [Summation, Expectation, Variance, Covariance, and Correlation](notes/01-01-summation-expectation.html) 
