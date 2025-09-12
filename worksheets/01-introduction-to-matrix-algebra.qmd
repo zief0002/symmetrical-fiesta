@@ -52,7 +52,7 @@ Make sure everyone in your group can solve each of these problem by hand and usi
 
 14. Create a $3\times3$ matrix that is symmetric and is not **I**.
 
-15. Solve the system of linear equations using algebra (e.g., substitution, elimination) and then solve them using matrix methods (with R). To do this you will need to read the [Systems of Equations](https://zief0002.github.io/matrix-algebra/systems-of-equations.html) chapter in *Matrix Algebra for Educational Scientists*.
+15. Solve the system of linear equations using algebra (e.g., substitution, elimination) and then solve them using matrix methods (with R). To do this you will need to read the [Systems of Equations](https://zief0002.github.io/matrix-algebra/60-solving-systems-of-equations.html) chapter in *Matrix Algebra for Educational Scientists*.
 
 $$
 \begin{split}
