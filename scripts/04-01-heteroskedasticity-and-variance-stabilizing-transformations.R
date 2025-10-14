@@ -46,7 +46,7 @@ p1 = ggplot(data = slid, aes(x = age, y = wages)) +
   xlab("Age (in years)") +
   ylab("Hourly wage rate")
 
-p2 = ggplot(data = slid, aes(x = age, y = education)) +
+p2 = ggplot(data = slid, aes(x = education, y = wages)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
   theme_bw() +
@@ -54,7 +54,7 @@ p2 = ggplot(data = slid, aes(x = age, y = education)) +
   ylab("Hourly wage rate")
 
 
-p3 = ggplot(data = slid, aes(x = male, y = education)) +
+p3 = ggplot(data = slid, aes(x = male, y = wages)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
   theme_bw() +

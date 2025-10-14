@@ -54,7 +54,7 @@ date: today
 - **Regression Diagnostics**
   + [Regression Diagnostics](notes/03-01-regression-diagnostics.html)
 - **Tools for Dealing with Heteroskedasticity**
-  + [Heteroskedasticity and Variance Stabilizing Transformations](notes/04-01-heteroskedasticity-and-transformations.html)
+  + [Heteroskedasticity and Variance Stabilizing Transformations](notes/04-01-heteroskedasticity-and-transformations.html) <span style="color: #ff2d21; font-size:13px;"> [<i>Updated 2025-10-14</i>]</span>
     - [Background Reading: Log-Transformations in Regression](https://zief0002.github.io/adv-modeling/03-04-logarithmic-transformations-outcome.html)
     - [Background Reading: Likelihood and Log-Likelihood](https://zief0002.github.io/adv-modeling/02-03-likelihood-framework-for-evidence.html)
   + [Weighted Least Squares (WLS) and Sandwich Estimation](notes/04-02-wls-and-sandwich-estimation.html)
