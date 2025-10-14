@@ -37,7 +37,7 @@ set.seed(1)
 
 
 # Simulate the data and convert to data frame
-sim_dat <- data.frame(MASS::mvrnorm(n = 1000, mu = means, Sigma = corrs, empirical = TRUE)) %>%
+sim_dat <- data.frame(MASS::mvrnorm(n = 1000, mu = means, Sigma = corrs, empirical = TRUE)) |>
   rename(
     achievement = X1,
     ability = X2, 
@@ -54,8 +54,8 @@ head(sim_dat)
 ### Correlations between ability, motivation, and achievement
 ##################################################
 
-sim_dat %>%
-  select(ability, motivation, achievement) %>%
+sim_dat |>
+  select(ability, motivation, achievement) |>
   correlate()
 
 

@@ -9,7 +9,7 @@ library(patchwork)
 
 
 ##################################################
-### Import data
+### Import and prepare data
 ##################################################
 
 contraception = read_csv("https://raw.githubusercontent.com/zief0002/symmetrical-fiesta/main/data/contraception.csv")
@@ -21,41 +21,62 @@ contraception
 #print(contraception, width = Inf)
 
 
+# Create dummy variable for GNI
+contraception = contraception |>
+  mutate(
+    high_gni = if_else(gni == "High", 1, 0)
+  )
+
+
+contraception |>
+  select(contraceptive, educ_female, high_gni)
+
+
+##################################################
+### Fit model and obtain sigma_e, coefficients, SEs, etc.
+##################################################
+
+lm.1 = lm(contraceptive ~ 1 + educ_female + high_gni, data = contraception)
+glance(lm.1)
+tidy(lm.1)
+summary(lm.1)
+
+
 
 ##################################################
 ### Examine the data
 ##################################################
 
-# Create density plot of contraception
-p1 = ggplot(data = contraception, aes(x = contraceptive)) + 
-  geom_density() +
-  theme_bw() +
-  labs(
-    x = "Contraceptive useage"
-  ) 
-
-# Create density plot of female education level
-p2 = ggplot(data = contraception, aes(x = educ_female)) + 
-  geom_density() +
-  theme_bw() +
-  labs(
-    x = "Female education level"
-  ) 
-
-
-# Condition the relationship on GNI
-p3 = ggplot(data = contraception, aes(x = educ_female, y = contraceptive, color = gni)) + 
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  theme_bw() +
-  labs(
-    x = "Female education level",
-    y = "Contraceptive useage"
-  ) +
-  facet_wrap(~gni)
-
-# Layout plots with patchwork
-(p1 | p2) / p3
+# # Create density plot of contraception
+# p1 = ggplot(data = contraception, aes(x = contraceptive)) + 
+#   geom_density() +
+#   theme_bw() +
+#   labs(
+#     x = "Contraceptive useage"
+#   ) 
+# 
+# # Create density plot of female education level
+# p2 = ggplot(data = contraception, aes(x = educ_female)) + 
+#   geom_density() +
+#   theme_bw() +
+#   labs(
+#     x = "Female education level"
+#   ) 
+# 
+# 
+# # Condition the relationship on GNI
+# p3 = ggplot(data = contraception, aes(x = educ_female, y = contraceptive, color = gni)) + 
+#   geom_point() +
+#   geom_smooth(method = "lm", se = FALSE) +
+#   theme_bw() +
+#   labs(
+#     x = "Female education level",
+#     y = "Contraceptive useage"
+#   ) +
+#   facet_wrap(~gni)
+# 
+# # Layout plots with patchwork
+# (p1 | p2) / p3
 
 
 
@@ -72,11 +93,6 @@ k = 2 #Number of predictors
 # Create outcome vector
 y = contraception$contraceptive
 
-# Create dummy variable for GNI
-contraception = contraception |>
-  mutate(
-    high_gni = if_else(gni == "High", 1, 0)
-  )
 
 # Create design matrix
 X = matrix(

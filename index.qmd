@@ -55,6 +55,8 @@ date: today
   + [Regression Diagnostics](notes/03-01-regression-diagnostics.html)
 - **Tools for Dealing with Heteroskedasticity**
   + [Heteroskedasticity and Variance Stabilizing Transformations](notes/04-01-heteroskedasticity-and-transformations.html)
+    - [Background Reading: Log-Transformations in Regression](https://zief0002.github.io/adv-modeling/03-04-logarithmic-transformations-outcome.html)
+    - [Background Reading: Likelihood and Log-Likelihood](https://zief0002.github.io/adv-modeling/02-03-likelihood-framework-for-evidence.html)
   + [Weighted Least Squares (WLS) and Sandwich Estimation](notes/04-02-wls-and-sandwich-estimation.html)
 - **Diagnosing Collinearity and Tools for Dealing With It**
   + [Diagnosing Collinearity](notes/05-01-diagnosing-collinearity.html)
