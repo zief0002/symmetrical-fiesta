@@ -166,7 +166,7 @@ include_graphics("../img/path-analysis-notes/02-correlation-path-values.png")
 
 ## Weak Causal Ordering
 
-In path modeling, we often assert *weak causal ordering* on the variables in the model. With weak causal ordering, we are not saying *X* causes *Y*, but rather that *if* *X* and *Y* are casually related, one of these variables (typically *X*) is the cause of the other. 
+In path modeling, we often assert *weak causal ordering* on the variables in the model. With weak causal ordering, we are not saying *X* causes *Y*, but rather that *if* *X* and *Y* are causally related, one of these variables (typically *X*) is the cause of the other. 
 
 ```{mermaid}
 flowchart LR
@@ -563,11 +563,11 @@ In the path diagrams we have looked at so far, the causal paths have gone in onl
 
 ```{r}
 #| label: fig-path-predator
-#| fig-cap: "The path model showing the effect of habitat on wolf and rabbit populations. The model is non-recursive since the wolf and rabbit populations effect each other."
-#| fig-alt: "The path model showing the effect of habitat on wolf and rabbit populations. The model is non-recursive since the wolf and rabbit populations effect each other."
+#| fig-cap: "The path model showing the effect of habitat on wolf and rabbit populations. The model is non-recursive since the wolf and rabbit populations affect each other."
+#| fig-alt: "The path model showing the effect of habitat on wolf and rabbit populations. The model is non-recursive since the wolf and rabbit populations affect each other."
 #| echo: false
 
-include_graphics("../img/path-analysis-notes/11-nonrecursive-model.png")
+include_graphics("../img/path-analysis-notes/12-nonrecursive-model-paths.png")
 ```
 
 <br />
