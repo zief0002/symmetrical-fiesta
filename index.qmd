@@ -28,7 +28,7 @@ date: today
 <!-- - [~~Assignment 3: Regression Diagnostics~~]() -->
 - [Assignment 3: Using WLS to Model Data with Outliers](https://docs.google.com/document/d/1RDBLk8hB97CuG-hdj3I46Nwc2bQgeQSyI1dCIVTByl8/edit?usp=sharing)
 - [Assignment 4: Collinearity and Dimension Reduction](https://docs.google.com/document/d/1Y1Bn3ynGod8jjQbMSCyLA8ypgOVKO4s41eExpDVYDX4/edit?usp=sharing)
-- [Assignment 5: Ridge Regression](https://docs.google.com/document/d/1ZCRsM3VJPf_Ur5O52XVMAcPKIarqh99woxY2TuWpGBY/edit?usp=sharing)
+- [Assignment 5: Ridge Regression](https://docs.google.com/document/d/1ZCRsM3VJPf_Ur5O52XVMAcPKIarqh99woxY2TuWpGBY/edit?usp=sharing) <span style="color: #ff2d21; font-size:13px;"> [<i>Updated 2025-10-24</i>]</span>
 - [Assignment 6: Cross Validation](https://docs.google.com/document/d/1qi2w9hGZ8kle4-Jri58cyjvR4-zdr8gob41nF2YtMNQ/edit?usp=sharing)
 </nav>
 
@@ -62,7 +62,7 @@ date: today
   + [Diagnosing Collinearity](notes/05-01-diagnosing-collinearity.html)
   + [Principal Components Analysis via Spectral Decomposition](notes/05-02-pca-via-spectral-decomposition.html)
   + [Principal Components Analysis via Singular Value Decomposition](notes/05-03-pca-via-svd.html)
-  + [Biased Estimation: Ridge Regression](notes/05-04-biased-estimation-ridge-regression.html)
+  + [Biased Estimation: Ridge Regression](notes/05-04-biased-estimation-ridge-regression.html) <span style="color: #ff2d21; font-size:13px;"> [<i>Updated 2025-10-24</i>]</span>
 - **Model Selection**
   + [Automated Methods for Model Selection](notes/06-01-automated-methods.html)
   + [Cross-Validation Methods for Model Selection](notes/06-02-cross-validation.html)
