@@ -108,7 +108,7 @@ p1 | p2 | p3
 
 If we had considered all three predictors, the plot would be in three-dimensional space and we would need to rotate the coordinate system formed by the basis vectors (1, 0, 0)-(0, 1, 0)-(0, 0, 1). With three dimensions, of course, we can now rotate in multiple directions. This idea can also be extended to *k*-dimensional space. (For now, to keep it simple, we will continue to work with the predictor space defined by the `faculty` and `peer` predictors.)
 
-Recall from the chapter [Basis Vectors and Matrices](https://zief0002.github.io/matrix-algebra/basis-vectors-and-matrices.html), that transforming the coordinates for a point to a new basis is a simple matter of pre-multiplying the vector of original coordinates by the matrix composed of the basis vectors. For example, the first observation in the `eeo` data had a `faculty` value of 0.608, and a `peer` value of 0.0351. If we transform this using a new set of basis vectors, say 
+Recall from the chapter [Basis Vectors and Matrices](https://zief0002.github.io/matrix-algebra/30-basis-vectors-and-matrices.html), that transforming the coordinates for a point to a new basis is a simple matter of pre-multiplying the vector of original coordinates by the matrix composed of the basis vectors. For example, the first observation in the `eeo` data had a `faculty` value of 0.608, and a `peer` value of 0.0351. If we transform this using a new set of basis vectors, say 
 
 $$
 \begin{bmatrix}0.7625172 & 0.6469680 \\ 0.6469680 & -0.7625172\end{bmatrix}
