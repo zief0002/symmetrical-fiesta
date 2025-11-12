@@ -12,3 +12,5 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+
+**/*.quarto_ipynb

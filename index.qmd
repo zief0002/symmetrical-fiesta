@@ -62,8 +62,10 @@ date: today
   + [Diagnosing Collinearity](notes/05-01-diagnosing-collinearity.html)
   + [Principal Components Analysis via Spectral Decomposition](notes/05-02-pca-via-spectral-decomposition.html)
   + [Principal Components Analysis via Singular Value Decomposition](notes/05-03-pca-via-svd.html)
+    - [PCA Examples Script File](https://github.com/zief0002/symmetrical-fiesta/raw/main/scripts/pca-examples.R) <span style="color: #ff2d21; font-size:13px;"> [<i>Added 2025-11-12</i>]</span>
   + [Biased Estimation: Ridge Regression](notes/05-04-biased-estimation-ridge-regression.html) <span style="color: #ff2d21; font-size:13px;"> [<i>Updated 2025-10-24</i>]</span>
 - **Model Selection**
+  + [Model Selection Worksheet](worksheets/02-model-selection.html)
   + [Automated Methods for Model Selection](notes/06-01-automated-methods.html)
   + [Cross-Validation Methods for Model Selection](notes/06-02-cross-validation.html)
 </nav>
@@ -76,5 +78,5 @@ date: today
 
 <!-- <nav aria-label="worksheets"> -->
 <!-- - [Introduction to Matrix Algebra](worksheets/01-introduction-to-matrix-algebra.html) -->
-<!-- - [Model Selection](worksheets/02-model-selection.html) -->
+
 <!-- </nav> -->

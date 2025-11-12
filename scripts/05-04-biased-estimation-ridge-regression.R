@@ -53,7 +53,7 @@ z_eeo = eeo |>
   data.frame()
 
 
-tidy(lm(achievement ~ 1 + faculty + peer + school, data = z_eeo_data))
+tidy(lm(achievement ~ 1 + faculty + peer + school, data = z_eeo))
 
 
 # Add small perturbations to inputs
@@ -124,7 +124,7 @@ tidy(ridge_1)
 ##################################################
 
 # Fit model
-lm.1 = lm(achievement ~ 1 + faculty + peer + school, data = z_data)
+lm.1 = lm(achievement ~ 1 + faculty + peer + school, data = z_eeo)
 coef(lm.1)
 
 
