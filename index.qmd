@@ -68,6 +68,7 @@ date: today
   + [Model Selection Worksheet](worksheets/02-model-selection.html)
   + [Automated Methods for Model Selection](notes/06-01-automated-methods.html)
   + [Cross-Validation Methods for Model Selection](notes/06-02-cross-validation.html)
+  + [Cross-Validation Methods: Ridge Regression](notes/06-03-cv-ridge-regression.html)
 </nav>
 
 
