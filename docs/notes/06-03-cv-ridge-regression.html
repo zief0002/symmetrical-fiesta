@@ -4112,7 +4112,7 @@ window.Quarto = {
 6  -0.2998797  0.1413252  0.08793894  0.2356566    8</code></pre>
 </div>
 </div>
-<p>Next, we will write a function that will use matrix algebra to compute the ridge regression coefficients given inputs of the training data and the <span class="math inline">\(\lambda\)</span> value.</p>
+<p>Next, we will write a function that will carry out the cross-validation by inputting both a training and validation dataset, fit the ridge regression using different <span class="math inline">\(\lambda\)</span> values to the training data, and the use those coefficients to compute residuals and the MSE for the validation data.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ridge_mse <span class="ot">=</span> <span class="cf">function</span>(.training, .validation){</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -4234,9 +4234,11 @@ window.Quarto = {
 <ul>
 <li><code>x=</code> the design matrix</li>
 <li><code>y=</code> the vector of the outcome</li>
+<li><code>nfolds=</code> is the number of folds to use in the CV</li>
+<li><code>type.measure=</code> sets the metric to compute (e.g., “mse”, “deviance”, “mae”)</li>
 <li><code>alpha=0</code> This tells the function to fit a ridge regression</li>
 <li><code>intercept=</code> This is either TRUE or FALSE depending on whether you want it to include an intercept in the model. (With a standardized model, set this to FALSE.)</li>
-<li><code>standardize=</code> This is also either TRUE or FALSE depending on whether you want</li>
+<li><code>standardize=</code> This is also either TRUE or FALSE. (If you have pre-standardized X and Y, then set this to FALSE.)</li>
 </ul>
 <!-- To use cross-validation for *d* selection, we perform the cross-validation using the `cv.glmnet()` function. Then, we can plot the results and extract the "best" *d* value. -->
 <div class="cell" data-layout-align="center">

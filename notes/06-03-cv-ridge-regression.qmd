@@ -69,7 +69,7 @@ head(z_eeo)
 ```
 
 
-Next, we will write a function that will use matrix algebra to compute the ridge regression coefficients given inputs of the training data and the $\lambda$ value.
+Next, we will write a function that will carry out the cross-validation by inputting both a training and validation dataset, fit the ridge regression using different $\lambda$ values to the training data, and the use those coefficients to compute residuals and the MSE for the validation data.
 
 
 
@@ -192,9 +192,11 @@ The `cv.glmnet()` function from the `{glmnet}` packages uses *k*-fold cross-vali
 
 - `x=` the design matrix
 - `y=` the vector of the outcome
+- `nfolds=` is the number of folds to use in the CV
+- `type.measure=` sets the metric to compute (e.g., "mse", "deviance", "mae")
 - `alpha=0` This tells the function to fit a ridge regression
 - `intercept=` This is either TRUE or FALSE depending on whether you want it to include an intercept in the model. (With a standardized model, set this to FALSE.)
-- `standardize=` This is also either TRUE or FALSE depending on whether you want
+- `standardize=` This is also either TRUE or FALSE. (If you have pre-standardized X and Y, then set this to FALSE.)
 
 
 

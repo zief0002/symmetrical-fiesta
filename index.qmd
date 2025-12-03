@@ -23,12 +23,17 @@ date: today
 ## Assignments
 
 <nav aria-label="assignments">
-- [Assignment 1: Matrix Algebra for Linear Regression](https://docs.google.com/document/d/1ZXfV635WEZ95Y1nICSLlMT_i5k1AyrrChE_pRQMKwGU/edit?usp=sharing)
-- [Assignment 2: Path Analysis](https://docs.google.com/document/d/11EzuqiQZMmFzzonJ70YLru3qC7Wh80iCL7-JUmasdPA/edit?usp=sharing)
+<!-- - [Assignment 1: Matrix Algebra for Linear Regression](https://docs.google.com/document/d/1ZXfV635WEZ95Y1nICSLlMT_i5k1AyrrChE_pRQMKwGU/edit?usp=sharing) -->
+<!-- - [Assignment 2: Path Analysis](https://docs.google.com/document/d/11EzuqiQZMmFzzonJ70YLru3qC7Wh80iCL7-JUmasdPA/edit?usp=sharing) -->
 <!-- - [~~Assignment 3: Regression Diagnostics~~]() -->
-- [Assignment 3: Using WLS to Model Data with Outliers](https://docs.google.com/document/d/1RDBLk8hB97CuG-hdj3I46Nwc2bQgeQSyI1dCIVTByl8/edit?usp=sharing)
-- [Assignment 4: Collinearity and Dimension Reduction](https://docs.google.com/document/d/1Y1Bn3ynGod8jjQbMSCyLA8ypgOVKO4s41eExpDVYDX4/edit?usp=sharing)
-- [Assignment 5: Ridge Regression](https://docs.google.com/document/d/1ZCRsM3VJPf_Ur5O52XVMAcPKIarqh99woxY2TuWpGBY/edit?usp=sharing) <span style="color: #ff2d21; font-size:13px;"> [<i>Updated 2025-10-24</i>]</span>
+<!-- - [Assignment 3: Using WLS to Model Data with Outliers](https://docs.google.com/document/d/1RDBLk8hB97CuG-hdj3I46Nwc2bQgeQSyI1dCIVTByl8/edit?usp=sharing) -->
+<!-- - [Assignment 4: Collinearity and Dimension Reduction](https://docs.google.com/document/d/1Y1Bn3ynGod8jjQbMSCyLA8ypgOVKO4s41eExpDVYDX4/edit?usp=sharing) -->
+<!-- - [Assignment 5: Ridge Regression](https://docs.google.com/document/d/1ZCRsM3VJPf_Ur5O52XVMAcPKIarqh99woxY2TuWpGBY/edit?usp=sharing) <span style="color: #ff2d21; font-size:13px;"> [<i>Updated 2025-10-24</i>]</span> -->
+- Assignment 1: Matrix Algebra for Linear Regression [Closed]
+- Assignment 2: Path Analysis [Closed]
+- Assignment 3: Using WLS to Model Data with Outliers [Closed]
+- Assignment 4: Collinearity and Dimension Reduction [Closed]
+- Assignment 5: Ridge Regression [Closed]
 - [Assignment 6: Cross Validation](https://docs.google.com/document/d/1qi2w9hGZ8kle4-Jri58cyjvR4-zdr8gob41nF2YtMNQ/edit?usp=sharing)
 </nav>
 
@@ -68,7 +73,7 @@ date: today
   + [Model Selection Worksheet](worksheets/02-model-selection.html)
   + [Automated Methods for Model Selection](notes/06-01-automated-methods.html)
   + [Cross-Validation Methods for Model Selection](notes/06-02-cross-validation.html)
-  + [Cross-Validation Methods: Ridge Regression](notes/06-03-cv-ridge-regression.html)
+  + [Cross-Validation Methods: Ridge Regression](notes/06-03-cv-ridge-regression.html) | [Script file](scripts/06-03-cv-ridge-regression.R) <span style="color: #ff2d21; font-size:13px;"> [<i>Updated 2025-12-03</i>]</span>
 </nav>
 
 
